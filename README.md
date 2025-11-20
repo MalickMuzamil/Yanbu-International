@@ -1,10 +1,15 @@
-### 📌MEAN CRM + eStore + Registration System
+<h1 align="center">📌 MEAN CRM + eStore + Registration System</h1>
+<h3 align="center">Yanbu International — Gulf Companies & Candidate Portal</h3>
 
-Yanbu International (Gulf-based Company Portal)
+<p align="center">
+  <img src="https://img.shields.io/badge/Stack-MEAN-purple?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Frontend-Angular%20%2B%20Bootstrap-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Backend-Java%20Spring%20Boot-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Responsive-YES-brightgreen?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" />
+</p>
 
-A complete MEAN Stack CRM + eCommerce + Candidate Registration ecosystem.
-Companies (Gulf region) can register, post jobs, and manage profiles.
-Candidates can build CVs using the CV Builder (or upload existing ones) and save everything inside their dashboard.
+---
 
 ### 🚀 Project Overview
 
@@ -50,6 +55,8 @@ Task assignment
 
 Dashboard analytics
 
+---
+
 🧩 Architecture
 Frontend (Angular)
 
@@ -75,6 +82,8 @@ MySQL/PostgreSQL DB
 
 DTO + Service + Controller architecture
 
+---
+
 /src  
  
  ├── app  
@@ -99,7 +108,9 @@ DTO + Service + Controller architecture
  
  └── environments  
 
-	
+---
+
+  
 ## 🔌 API Integration
 
 Your Angular app is fully integrated with Java backend APIs:
@@ -117,6 +128,8 @@ eStore API
 Admin Panel API
 
 
+---
+
 ### 🛠️ Setup Instructions
 
 1️⃣ Install Dependencies
@@ -131,15 +144,21 @@ ng serve -o
 
 mvn spring-boot:run
 
+---
+
 ### 🧪 Testing
 
 Angular Unit Tests → Karma/Jasmine
 
 API Tests → Postman Collection
 
+---
+
 ### 📄 License
 
 This project is licensed under the MIT License.
+
+---
 
 ### 🤝 Authors / Contributors
 
