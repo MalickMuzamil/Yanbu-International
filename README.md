@@ -165,6 +165,4 @@ This project is licensed under the MIT License.
 Muzamil Saleem
 
 Frontend: Angular
-
-Backend: Java Spring Boot
 	
