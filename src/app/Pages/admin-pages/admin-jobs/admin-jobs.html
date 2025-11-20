@@ -1,0 +1,183 @@
+<div class="d-md-none p-3">
+  <button
+    class="btn btn-outline-dark bg-white"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#sidebarOffcanvas"
+  >
+    <i class="bx bx-menu fs-4 text-dark"></i>
+  </button>
+</div>
+
+<div class="d-flex" style="height: 100vh; overflow: hidden">
+  <app-sidebar
+    style="position: sticky; top: 0; height: 100vh; flex-shrink: 0"
+  ></app-sidebar>
+
+  <div
+    class="flex-grow-1 p-4 d-flex flex-column w-100 page"
+    style="overflow-y: auto; height: 100vh"
+  >
+    <h2 class="mb-4 title fw-bold">Jobs</h2>
+
+    <!-- Search bar + Create Job button -->
+    <div class="mb-4 row align-items-start filter-bar">
+      <div class="col-12 col-md-6 col-lg-10">
+        <div class="d-flex flex-column">
+          <input
+            type="text"
+            class="form-control w-100"
+            placeholder="Search jobs..."
+            [(ngModel)]="searchTerm"
+            (keyup.enter)="onSearchChange()"
+          />
+          <small class="text-muted mt-1 ms-1"
+            >Press <strong>Enter</strong> to search</small
+          >
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-2 mt-3 mt-md-0 text-md-end">
+        <button
+          class="btn btn-success fw-semibold px-2 py-2"
+          (click)="openCreateJobModal()"
+          [ngClass]="{ 'btn-sm': true }"
+        >
+          <i class="bx bx-plus me-2" style="font-size: 0.9rem"></i>
+          <span class="d-none d-md-inline" style="font-size: 0.9rem"
+            >Create Job</span
+          >
+          <span class="d-md-none">Create</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Filters + Job cards in one row -->
+    <div class="row">
+      <aside class="col-12 col-md-3 mb-4">
+        <app-accordian
+          [items]="accordionItems"
+          (filterChanged)="onFilterChanged($event)"
+        >
+        </app-accordian>
+      </aside>
+
+      <!-- Job cards -->
+      <div class="col-12 col-md-9">
+        <div class="row row-cols-1 g-4">
+          @if (filteredJobs.length === 0) {
+          <div class="col">
+            <div class="card h-100 shadow-lg border rounded-3">
+              <div
+                class="card-body d-flex justify-content-center align-items-center"
+              >
+                <p class="text-muted mb-0">No jobs found From Backend.</p>
+              </div>
+            </div>
+          </div>
+          } @for (job of filteredJobs; track $index) {
+          <div class="col">
+            <div class="card h-100 shadow-lg border rounded-3 custom-card">
+              <div class="card-body d-flex flex-column justify-content-between">
+                <!-- Job Title -->
+                <h5 class="card-title fw-bold mb-1">{{ job.title }}</h5>
+
+                <!-- Company -->
+                <p class="mb-2 small text-muted d-flex align-items-center">
+                  <i class="bx bx-briefcase-alt-2 me-2 text-primary"></i>
+                  <span> <strong>Company:</strong> {{ job.companyName }} </span>
+                </p>
+
+                <!-- Description -->
+                <p class="card-text mb-2 small text-secondary truncate-3-lines">
+                  {{ job.description }}
+                </p>
+
+                <!-- Badges -->
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="badge bg-light text-dark border">
+                    <i class="bx bx-map me-1"></i> {{ job.location }}
+                  </span>
+                  <span class="badge bg-light text-dark border">
+                    <i class="bx bx-money me-1"></i>
+                    {{ job.salary }}
+                  </span>
+
+                  @if (job.experience) {
+                  <div class="d-flex flex-wrap gap-2">
+                    <span
+                      class="badge bg-light text-dark border align-items-center text-wrap"
+                      style="white-space: normal; max-width: 100%"
+                    >
+                      <i class="bx bx-timer me-1"></i>
+                      <span>Exp: {{ job.experience }} yrs</span>
+                    </span>
+                  </div>
+                  } @if (job.gender) {
+                  <span class="badge bg-light text-dark border">
+                    <i class="bx bx-user me-1"></i> {{ job.gender }}
+                  </span>
+                  } @if (job.vacancy) {
+                  <span class="badge bg-light text-dark border">
+                    <i class="bx bx-group me-1"></i> Vacancies:
+                    {{ job.vacancy }}
+                  </span>
+                  } @if (job.jobPostedDate) {
+                  <span class="badge bg-light text-dark border">
+                    <i class="bx bx-calendar me-1"></i>
+                    Posted: {{ job.jobPostedDate | date : "MMM d, y" }}
+                  </span>
+                  }
+                </div>
+
+                <!-- Roles & Responsibilities -->
+                @if (job.rolesAndResponsibility) {
+                <div class="mb-3">
+                  <p class="small text-muted mb-1 fw-bold">
+                    Roles & Responsibilities:
+                  </p>
+                  <p class="small text-secondary truncate-3-lines">
+                    {{ job.rolesAndResponsibility }}
+                  </p>
+                </div>
+                }
+
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-end mt-auto">
+                  <button
+                    class="btn btn-sm btn-outline-primary me-2 d-flex align-items-center gap-1"
+                    type="button"
+                    (click)="openEditModal(job)"
+                  >
+                    <i class="bx bx-edit"></i>
+                    <span>Edit</span>
+                  </button>
+
+                  <button
+                    class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1"
+                    type="button"
+                    (click)="deleteJob(job)"
+                  >
+                    <i class="bx bx-trash"></i>
+                    <span>Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <app-pagination
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (pageChange)="onPageChange($event)"
+    >
+    </app-pagination>
+  </div>
+
+  <app-job-modal #jobModal (closed)="onModalClosed()"></app-job-modal>
+</div>

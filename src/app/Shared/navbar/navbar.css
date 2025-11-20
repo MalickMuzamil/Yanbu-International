@@ -1,0 +1,34 @@
+.logo {
+  width: 70px;
+  height: 70px;
+}
+
+/* .navbar-bg{
+    background-color: #0A174E;
+} */
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-part {
+  font-weight: bold;
+  color: black;
+  line-height: 1.1;
+}
+
+.nav-link {
+  color: black;
+  font-weight: 500;
+}
+
+.navbar-nav .nav-item {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.navbar .container {
+  justify-content: space-between;
+}

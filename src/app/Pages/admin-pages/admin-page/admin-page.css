@@ -1,0 +1,95 @@
+.title {
+  color: #0a174e;
+}
+
+.sub-heading {
+  color: #0a174e;
+}
+.btn-small {
+  font-size: 12px;
+  padding: 2px 8px;
+  line-height: 1.2;
+}
+
+@media (max-width: 767.98px) {
+  .filter-bar {
+    flex-wrap: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .filter-bar select,
+  .filter-bar button {
+    font-size: 0.875rem;
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .filter-bar button {
+    flex-shrink: 0;
+  }
+
+  .filter-bar .bi {
+    font-size: 1rem;
+  }
+}
+
+select.form-select {
+  padding-right: 2.5rem !important;
+}
+
+td {
+  font-size: 13px;
+}
+
+.btn-outline-primary {
+  color: #0a174e;
+  border-color: #0a174e;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  border-color: #0a174e;
+  background-color: #0a174e;
+}
+
+.page {
+  background-color: #ffffff;
+}
+
+.search-box {
+  width: 50%;
+}
+
+.btn-export-width {
+  width: 50%; 
+}
+
+
+@media (max-width: 768px) {
+  .search-box {
+    width: 100%;
+  }
+
+   .btn-export-width {
+    width: 100%;
+  }
+}
+
+
+
+.search-input::placeholder {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.filter-bar {
+  position: static !important;
+}
+
+.search-box,
+.input-group,
+.search-input {
+  position: static !important;
+}

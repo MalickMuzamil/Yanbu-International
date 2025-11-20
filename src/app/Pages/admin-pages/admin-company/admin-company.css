@@ -1,0 +1,138 @@
+.company-th, .company-td {
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+.company-table-wrapper .no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: #6c757d;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.action-buttons button i {
+  vertical-align: middle;
+}
+
+.search-input::placeholder {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.search-box {
+  width: 25%;
+}
+
+@media (max-width: 768px) {
+  .search-box {
+    width: 100%;
+  }
+}
+
+.search-box,
+.input-group,
+.search-input {
+  position: static !important;
+}
+
+.company-table {
+  width: 100%;
+  /* border-collapse: separate; */
+  border-spacing: 0;
+  font-family: var(--font-poppins);
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  color: var(--oap-text-dark);
+  background-color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.company-table th,
+.company-table td {
+  padding: clamp(0.5rem, 0.8vw, 0.75rem);
+  vertical-align: middle;
+  text-align: left;
+}
+
+.company-table thead {
+  background: var(--oap-gradient);
+  color: #fff;
+}
+
+.company-table thead th {
+  font-weight: var(--font-weight-medium);
+  font-size: clamp(0.9rem, 1vw, 1.05rem);
+}
+
+.company-table tbody tr {
+  transition: background 0.2s;
+}
+
+.company-table tbody tr:hover {
+  background-color: rgba(10, 23, 78, 0.05);
+}
+
+.company-td {
+  font-size: clamp(0.85rem, 0.95vw, 1rem);
+  vertical-align: middle;
+  max-width: 200px; 
+  white-space: nowrap;
+  overflow: hidden;   
+  text-overflow: ellipsis
+}
+
+
+/* Logo styling */
+.company-logo {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  border: 1px solid #ddd;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: nowrap; /* ensure single row */
+  justify-content: flex-end;
+}
+
+.action-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.5rem;
+  font-size: clamp(0.75rem, 0.8vw, 0.9rem);
+  border-radius: 0.25rem;
+  transition: transform 0.15s ease;
+}
+
+.action-buttons button i {
+  font-size: 1.1em;
+}
+
+.action-buttons button:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 1200px) {
+  .company-table th,
+  .company-table td {
+    padding: 0.4rem 0.5rem;
+    font-size: clamp(0.8rem, 1vw, 0.95rem);
+  }
+  .company-logo {
+    height: 40px;
+    width: 40px;
+  }
+}

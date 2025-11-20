@@ -1,0 +1,101 @@
+<footer class="text-white pt-5 custom-bg-footer-2">
+    <div class="container">
+        <div class="row text-center text-md-start">
+
+            <!-- Navigation -->
+            <div class="col-12 col-sm-6 col-md mb-5">
+                <h6 class="fw-bold text-uppercase footer-heading">{{ 'FOOTER.NAVIGATION.TITLE' | translate }}</h6>
+                <ul class="list-unstyled">
+                    <li>
+                        <a routerLink="/" class="text-white text-decoration-none d-block mb-2">
+                            {{ 'FOOTER.NAVIGATION.HOME' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/jobs" class="text-white text-decoration-none d-block mb-2">
+                            {{ 'FOOTER.NAVIGATION.JOBS' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/services" class="text-white text-decoration-none d-block mb-2">
+                            {{ 'FOOTER.NAVIGATION.SERVICES' | translate }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Address -->
+            <div class="col-12 col-sm-6 col-md mb-5">
+                <h6 class="fw-bold text-uppercase footer-heading">{{ 'FOOTER.ADDRESS.TITLE' | translate }}</h6>
+                <p class="mb-1">{{ 'FOOTER.ADDRESS.LINE1' | translate }}</p>
+                <p class="mb-0">{{ 'FOOTER.ADDRESS.LINE2' | translate }}</p>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-12 col-sm-6 col-md mb-5">
+                <h6 class="fw-bold text-uppercase footer-heading">{{ 'FOOTER.CONTACT.TITLE' | translate }}</h6>
+                <p class="mb-1">{{ 'FOOTER.CONTACT.EMAIL' | translate }}</p>
+                <p class="mb-0">{{ 'FOOTER.CONTACT.PHONE' | translate }}</p>
+            </div>
+
+            <!-- Follow Us -->
+            <div class="col-12 col-sm-6 col-md mb-5">
+                <h6 class="fw-bold text-uppercase text-center follow-us-heading footer-heading">
+                    {{ 'FOOTER.FOLLOW.TITLE' | translate }}
+                </h6>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="#"
+                        class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                        style="width: 36px; height: 36px;">
+                        <i class='bx bxl-facebook'></i>
+                    </a>
+                    <a href="#"
+                        class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                        style="width: 36px; height: 36px;">
+                        <i class='bx bxl-twitter'></i>
+                    </a>
+                    <a href="#"
+                        class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                        style="width: 36px; height: 36px;">
+                        <i class='bx bxl-linkedin'></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Admin -->
+            <div class="col-12 col-sm-6 col-md mb-5">
+                <h6 class="fw-bold text-uppercase footer-heading">{{ 'FOOTER.ADMIN.TITLE' | translate }}</h6>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="javascript:void(0)" (click)="openLogin()"
+                            class="text-white text-decoration-none d-block">
+                            {{ 'FOOTER.ADMIN.LOGIN' | translate }}
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/candidate-portal"
+                            class="text-white text-decoration-none d-block">
+                            {{ 'Candidate Portal' | translate }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row border-top py-3 bg-danger">
+            <div class="col text-center">
+                <small class="text-white">
+                    © 2025 yanbuinternational. <strong>{{ 'FOOTER.RIGHTS.ALL' | translate }}</strong>
+                    <i class='bx bx-right-arrow-alt'></i>
+                    {{ 'FOOTER.RIGHTS.RESERVED' | translate }}
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<app-login-modal></app-login-modal>

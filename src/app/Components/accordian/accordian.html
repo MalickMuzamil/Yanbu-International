@@ -1,0 +1,40 @@
+<div class="accordion" id="generalAccordion">
+  @for (item of items; track $index) {
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading-{{ $index }}">
+        <button class="accordion-button collapsed" type="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#collapse-' + $index"
+          aria-expanded="false"
+          [attr.aria-controls]="'collapse-' + $index">
+          {{ item.title | translate }}
+        </button>
+      </h2>
+
+      <div id="collapse-{{ $index }}" class="accordion-collapse collapse"
+        [attr.aria-labelledby]="'heading-' + $index"
+        data-bs-parent="#generalAccordion">
+        <div class="accordion-body">
+
+          @if (isStringContent(item.content)) {
+            {{ item.content }}
+          }
+
+          @else if (isArrayContent(item.content)) {
+            <ul class="list-unstyled">
+              @for (val of item.content; track val) {
+                <li>
+                  <input type="checkbox"
+                         [value]="val"
+                         (change)="onFilterChange(item.title, $event)" />
+                  {{ val }}
+                </li>
+              }
+            </ul>
+          }
+
+        </div>
+      </div>
+    </div>
+  }
+</div>

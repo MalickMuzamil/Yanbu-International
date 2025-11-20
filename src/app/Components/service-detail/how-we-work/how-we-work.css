@@ -1,0 +1,65 @@
+.work-card {
+  background-color: rgb(229, 227, 227);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.work-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.work-card h6 {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.work-card ul li {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  margin-bottom: 0.5rem;
+}
+
+
+.work-heading{
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+
+
+.form-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.form-label {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+}
+
+.form-input {
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+}
+
+.form-btn-sm {
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
+}
+
+.submit-btn {
+  width: 100%; 
+  font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+  padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 2vw, 1.2rem);
+  border-radius: 8px;
+}
+
+@media (min-width: 768px) {
+  .submit-btn {
+    width: auto;
+    display: block;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .form-title {
+    width: 50%;
+  }
+}

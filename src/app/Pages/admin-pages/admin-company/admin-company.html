@@ -1,0 +1,137 @@
+<div class="d-md-none p-3">
+  <button
+    class="btn btn-outline-dark bg-white"
+    type="bchterm: stringutton"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#sidebarOffcanvas"
+  >
+    <i class="bx bx-menu fs-4 text-dark"></i>
+  </button>
+</div>
+
+<div class="d-flex" style="height: 100vh; overflow: hidden">
+  <app-sidebar
+    style="position: sticky; top: 0; height: 100vh; flex-shrink: 0"
+  ></app-sidebar>
+
+  <div
+    class="flex-grow-1 p-4 d-flex flex-column w-100 page"
+    style="overflow-y: auto; height: 100vh"
+  >
+    <h2 class="mb-4 title fw-bold">Jobs</h2>
+
+    <div class="mb-4 row align-items-start filter-bar">
+      <div class="col-12 col-md-6 col-lg-10">
+        <div class="d-flex flex-column">
+          <div class="input-group search-box">
+            <span class="input-group-text bg-white">
+              <i class="bx bx-search"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control search-input"
+              placeholder="Search Companies...."
+              (keyup.enter)="onSearchChange()"
+              [(ngModel)]="searchTerm"
+            />
+          </div>
+
+          <small class="text-muted mt-1 ms-1"
+            >Press <strong>Enter</strong> to search</small
+          >
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-2 mt-3 mt-md-0 text-md-end">
+        <button
+          type="button"
+          class="btn btn-success fw-semibold px-3 py-2 btn-sm"
+          (click)="openCreateModal()"
+        >
+          <i class="bx bx-plus me-2" style="font-size: 0.7rem"></i>
+          <span class="d-none d-md-inline" style="font-size: 0.7rem"
+            >Create Company</span
+          >
+          <span class="d-md-none">Create</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="table-responsive company-table-wrapper">
+      @if (filteredCompanies.length === 0) {
+      <div class="no-data">
+        <p>No companies found.</p>
+      </div>
+      } @else {
+      <table
+        class="table table-bordered table-striped align-middle company-table mb-0"
+      >
+        <thead class="table-light">
+          <tr>
+            <th class="company-th">Company Name</th>
+            <th class="company-th">Email</th>
+            <th class="company-th">Industry</th>
+            <th class="company-th">Type</th>
+            <th class="company-th">Location</th>
+            <th class="company-th">Phone</th>
+            <th class="company-th">Website</th>
+            <th class="company-th">Address</th>
+            <th class="company-th">Description</th>
+            <th class="text-end company-th">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (company of filteredCompanies; track $index) {
+          <tr>
+            <td class="company-td fw-semibold">{{ company.companyName }}</td>
+            <td class="company-td">{{ company.companyEmail }}</td>
+            <td class="company-td">{{ company.companyIndustry }}</td>
+            <td class="company-td">{{ company.companyType }}</td>
+            <td class="company-td">{{ company.companyLocation }}</td>
+            <td class="company-td">{{ company.companyPhoneNumber }}</td>
+            <td class="company-td">
+              <a [href]="company.companyWebsiteUrl" target="_blank">{{
+                company.companyWebsiteUrl
+              }}</a>
+            </td>
+            <td class="company-td">{{ company.companyAddress }}</td>
+            <td class="company-td">{{ company.companyDescription }}</td>
+            <td>
+              <div class="action-buttons text-end">
+                <button
+                  class="btn btn-sm btn-info"
+                  (click)="openViewModal(company)"
+                >
+                  <i class="bx bx-show"></i>
+                </button>
+                <button
+                  class="btn btn-sm btn-primary"
+                  (click)="openEditModal(company)"
+                >
+                  <i class="bx bx-edit"></i>
+                </button>
+                <button
+                  class="btn btn-sm btn-danger"
+                  (click)="deleteCompany(company)"
+                >
+                  <i class="bx bx-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+
+      }
+    </div>
+
+    <app-pagination
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (pageChange)="onPageChange($event)"
+    ></app-pagination>
+  </div>
+</div>
+
+<app-company-modal (closed)="onModalClosed()"></app-company-modal>

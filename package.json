@@ -1,0 +1,60 @@
+{
+  "name": "yanbu",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "build:stag": "ng build --configuration development",
+    "build:prod": "ng build --configuration production",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^20.1.0",
+    "@angular/compiler": "^20.1.0",
+    "@angular/core": "^20.1.0",
+    "@angular/forms": "^20.1.0",
+    "@angular/platform-browser": "^20.1.0",
+    "@angular/router": "^20.1.0",
+    "@angular/service-worker": "^20.1.0",
+    "@fortawesome/angular-fontawesome": "^3.0.0",
+    "@fortawesome/free-solid-svg-icons": "^7.0.0",
+    "@ngx-translate/core": "^17.0.0",
+    "@ngx-translate/http-loader": "^17.0.0",
+    "bootstrap": "^5.3.7",
+    "file-saver": "^2.0.5",
+    "html2pdf.js": "^0.12.0",
+    "i18n-iso-countries": "^7.14.0",
+    "rxjs": "^7.8.1",
+    "sweetalert2": "^11.22.5",
+    "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
+    "zone.js": "^0.15.1"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.1.3",
+    "@angular/cli": "^20.1.3",
+    "@angular/compiler-cli": "^20.1.0",
+    "@types/file-saver": "^2.0.7",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.8.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.8.2"
+  }
+}

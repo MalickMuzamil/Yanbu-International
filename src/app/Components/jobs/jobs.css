@@ -1,0 +1,250 @@
+/* === Section Title === */
+.section-title {
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.6rem);
+  font-weight: 700;
+  color: var(--color-heading, #1f2a44);
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  letter-spacing: 0.4px;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -12px;
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, #dc3545, #ff6b6b);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(255, 107, 107, 0.4);
+}
+
+/* === Job Card === */
+.job-card {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 1.8rem;
+  background: #ffffff;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.job-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #dc3545, #ff6b6b);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.job-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(220, 53, 69, 0.12);
+  border-color: rgba(220, 53, 69, 0.15);
+}
+
+/* === Text + Titles === */
+.job-title {
+  font-size: clamp(1.1rem, 1vw + 0.8rem, 1.5rem);
+  font-weight: 700;
+  color: #1f2a44;
+  margin-bottom: 0.4rem;
+}
+
+.job-title a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.job-title a:hover {
+  color: #dc3545;
+}
+
+.job-location {
+  font-size: clamp(0.9rem, 0.8vw + 0.6rem, 1.1rem);
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.company-logo {
+  width: clamp(60px, 15vw, 120px);
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  background-color: #fdfdfd;
+  padding: 5px;
+}
+
+/* === Flag === */
+.flag-img {
+  width: 28px;
+  height: 18px;
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* === Badges === */
+.job-badge {
+  font-size: 0.85rem;
+  padding: 0.4em 0.9em;
+  border-radius: 20px;
+  background: #f8f9fa;
+  color: #444;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #e3e3e3;
+  transition: all 0.3s ease;
+}
+
+.job-badge:hover {
+  background: linear-gradient(90deg, #dc3545, #ff6b6b);
+  color: #fff !important;
+  border-color: transparent;
+}
+
+/* === Apply Button === */
+.btn-apply {
+  font-size: 0.9rem;
+  padding: 0.5em 1.2em;
+  font-weight: 600;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #dc3545, #ff6b6b);
+  border: none;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(220, 53, 69, 0.3);
+  white-space: nowrap;
+}
+
+.btn-apply:hover {
+  background: linear-gradient(90deg, #b02a37, #dc3545);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
+}
+
+/* === Footer Flex Alignment (Apply Button + Badges) === */
+.job-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.apply-btn-wrapper {
+  margin-left: auto;
+}
+
+/* ✅ Desktop (default) – badges left, button right */
+@media (min-width: 769px) {
+  .job-footer {
+    flex-direction: row;
+    align-items: center;
+  }
+  .apply-btn-wrapper {
+    margin-left: auto;
+  }
+}
+
+/* ✅ Tablet & Mobile (stacked layout, 1 per row) */
+@media (max-width: 768px) {
+  .job-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.8rem;
+  }
+
+  .job-footer .d-flex.flex-wrap {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+  }
+
+  .job-badge {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .apply-btn-wrapper {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  .btn-apply {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* === Skeleton === */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+.skeleton-line,
+.skeleton-button {
+  display: block;
+  background: #f5f5f5;
+  background-image: linear-gradient(
+    90deg,
+    #f5f5f5 0px,
+    #eaeaea 40px,
+    #f5f5f5 80px
+  );
+  background-size: 200px 100%;
+  animation: skeleton-shimmer 1.5s infinite linear;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.skeleton-line.title {
+  height: 20px;
+  width: 70%;
+  margin-bottom: 12px;
+}
+
+.skeleton-line.small {
+  height: 14px;
+  width: 50%;
+}
+
+.skeleton-button {
+  height: 32px;
+  width: 100px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+.skeleton-logo {
+  width: 80px;
+  height: 40px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}

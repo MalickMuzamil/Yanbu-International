@@ -1,0 +1,93 @@
+<div class="d-none sidebar d-md-block p-3 pt-4 position-relative">
+  <div class="text-center mb-4 pb-3 sidebar-header">
+    <img src="assets/Logo.png" alt="Logo" class="img-fluid sidebar-logo" />
+
+    <h5 class="fw-bold mb-1 fs-3 user-name">{{ userName }}</h5>
+    <p class="fw-semibold mb-0 user-email">{{ userEmail }}</p>
+  </div>
+
+  <ul class="nav flex-column gap-2 sidebar-nav">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/candidate-portal"
+        routerLinkActive="active bg-active text-white rounded"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="bi bi-briefcase me-2"></i> Applied Jobs
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/cv-builder"
+        routerLinkActive="active bg-active text-white rounded"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="bi bi-file-earmark-text me-2"></i> Create CV
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidebar-footer position-absolute bottom-0 start-0 w-100 p-3">
+    <button class="btn btn-danger w-100 fw-semibold logout-btn" (click)="openLogoutModal()">
+      <i class="bi bi-box-arrow-right me-2"></i> Logout
+    </button>
+  </div>
+</div>
+
+<div
+  class="offcanvas offcanvas-start d-md-none sidebar-mobile"
+  tabindex="-1"
+  id="sidebarOffcanvas"
+  aria-labelledby="offcanvasLabel"
+>
+  <div class="offcanvas-header w-100 d-flex align-items-center justify-content-between">
+    <div class="text-center w-100">
+      <img src="assets/Logo.png" alt="Logo" class="img-fluid sidebar-logo mb-2" />
+      <h5 class="offcanvas-title mb-0 mt-2 user-name">{{ userName }}</h5>
+      <small class="fw-medium user-email">{{ userEmail }}</small>
+    </div>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <div class="offcanvas-body d-flex flex-column justify-content-between">
+    <ul class="nav flex-column gap-2">
+      <li class="nav-item">
+        <a
+          class="nav-link mobile-nav"
+          routerLink="/candidate-portal"
+          routerLinkActive="active bg-active rounded"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <i class="bi bi-briefcase me-2"></i> Applied Jobs
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link mobile-nav"
+          routerLink="/cv-builder"
+          routerLinkActive="active bg-active rounded"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <i class="bi bi-file-earmark-text me-2"></i> Create CV
+        </a>
+      </li>
+    </ul>
+
+    <button class="btn btn-danger w-100 mt-3 fw-semibold logout-btn" (click)="openLogoutModal()">
+      <i class="bi bi-box-arrow-right me-2"></i> Logout
+    </button>
+  </div>
+</div>
+
+<app-dailog-box
+  [visible]="showLogoutModal"
+  [title]="'Logout Confirmation'"
+  [message]="'Are you sure you want to logout?'"
+  [confirmText]="'Yes, Logout'"
+  [cancelText]="'Cancel'"
+  (confirm)="handleLogoutConfirm()"
+  (cancel)="handleLogoutCancel()"
+  class="dialog-fix"
+></app-dailog-box>

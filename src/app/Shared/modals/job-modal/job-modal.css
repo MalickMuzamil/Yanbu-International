@@ -1,0 +1,33 @@
+.job-form .form-label {
+  font-weight: var(--font-weight-medium);
+  color: var(--oap-text-dark);
+  font-size: clamp(0.875rem, 1vw, 1rem);
+}
+
+.job-form .form-control,
+.job-form .form-select {
+  border-radius: 0.4rem;
+  border: 1px solid #ddd;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-poppins);
+  font-size: clamp(0.85rem, 0.9vw, 1rem);
+  transition: all 0.2s;
+}
+
+.job-form .form-control:focus,
+.job-form .form-select:focus {
+  border-color: var(--oap-primary);
+  box-shadow: 0 0 0 0.15rem rgba(10, 23, 78, 0.15);
+  outline: none;
+}
+
+.custom-select {
+  background-position: right 0.75rem center !important;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+}
+
+.modal-footer .btn {
+  min-width: 100px;
+  font-size: clamp(0.875rem, 1vw, 1rem);
+}

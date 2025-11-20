@@ -1,0 +1,303 @@
+<div class="container py-4" *ngIf="!selectedJob">
+  <div class="row g-4">
+    <div class="col-md-8">
+      <div class="card p-4 mb-4">
+        <div class="skeleton skeleton-title mb-2"></div>
+        <div class="skeleton skeleton-text w-50"></div>
+        <div class="skeleton skeleton-btn mt-3"></div>
+      </div>
+
+      <div class="card p-4 mb-4">
+        <div class="row">
+          <div class="col-md-4 mb-3" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+            <div class="skeleton skeleton-label mb-1"></div>
+            <div class="skeleton skeleton-text w-75"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-4">
+        <div class="skeleton skeleton-title mb-3"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text w-75"></div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card p-4 mb-4">
+        <div class="skeleton skeleton-title mb-2 w-75"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text w-50"></div>
+      </div>
+
+      <div class="card p-4">
+        <div class="skeleton skeleton-title mb-2"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text w-75"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container py-4" *ngIf="selectedJob">
+  <div class="row g-4">
+    <div class="col-md-8">
+      <div class="card p-4 mb-4">
+        <h4 class="title">{{ selectedJob?.title }}</h4>
+        <p class="title">{{ selectedJob?.companyName }}</p>
+        <small class="title">{{ selectedJob?.jobPostedDate | date }}</small>
+
+        <div class="mt-3">
+          <button class="btn btn-primary" (click)="applyNow()">
+            {{ selectedJob?.applyType || "Apply Now" }}
+          </button>
+        </div>
+      </div>
+
+      <div class="card p-4 mb-4">
+        <div class="row small">
+          <div class="col-md-4 mb-3 job-deatil">
+            <strong class="d-block fw-semibold title label">Experience</strong>
+            <span class="text-muted">{{ selectedJob?.experience }}</span>
+          </div>
+          <div class="col-md-4 mb-3 job-deatil">
+            <strong class="d-block fw-semibold title label"
+              >Job Location</strong
+            >
+            <span class="text-muted">{{ selectedJob?.location }}</span>
+          </div>
+          <div class="col-md-4 mb-3 job-deatil">
+            <strong class="d-block fw-semibold title label">Education</strong>
+            <span class="text-muted">{{ selectedJob?.education }}</span>
+          </div>
+          <div class="col-md-4 mb-3 job-deatil">
+            <strong class="d-block fw-semibold title label">Nationality</strong>
+            <span class="text-muted">{{ selectedJob?.nationality }}</span>
+          </div>
+          <div class="col-md-4 mb-3 job-deatil">
+            <strong class="d-block fw-semibold title label">Gender</strong>
+            <span class="text-muted">{{ selectedJob?.gender }}</span>
+          </div>
+          <div class="col-md-4 mb-3 job-deatil">
+            <strong class="d-block fw-semibold title label">Vacancy</strong>
+            <span class="text-muted">{{ selectedJob?.vacancy }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-4" *ngIf="selectedJob">
+        <!-- Description -->
+        <h5 class="fw-bold">Job Description</h5>
+        <p class="text-muted mb-4">
+          {{ selectedJob?.description }}
+        </p>
+
+        <!-- Roles & Responsibilities -->
+        <div class="mt-4">
+          <h5 class="fw-bold">Roles & Responsibilities</h5>
+          <p class="text-muted">
+            {{ selectedJob?.rolesAndResponsibility }}
+          </p>
+        </div>
+
+        <!-- Skills -->
+        <div class="mt-4" *ngIf="selectedJob?.skills?.length > 0">
+          <h5 class="fw-bold">Key Skills</h5>
+          <div class="d-flex flex-wrap gap-2 mt-2">
+            <span
+              *ngFor="let skill of selectedJob?.skills"
+              class="badge bg-light border text-dark"
+            >
+              {{ skill }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div *ngIf="selectedJob">
+        <div class="card p-4 mb-4">
+          <div *ngIf="!selectedJob?.hideCompanyInfo; else confidentialBlock">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <!-- Company Logo -->
+              <img
+                *ngIf="selectedCompany?.companyLogoUrl"
+                [src]="selectedCompany?.companyLogoUrl"
+                alt="Company Logo"
+                class="rounded"
+                width="60"
+                height="60"
+              />
+              <div>
+                <h5 class="title mb-1">{{ selectedCompany?.companyName }}</h5>
+                <small class="text-muted">
+                  {{ selectedCompany?.companyLocation }}
+                </small>
+              </div>
+            </div>
+
+            <div class="row text-muted small mb-2">
+              <div class="col-md-12 my-2">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">Type:</span>
+                  <span>{{ selectedCompany?.companyType }}</span>
+                </div>
+              </div>
+
+              <div class="col-md-12 my-2">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">Employees:</span>
+                  <span>{{
+                    selectedCompany?.employeeCount || "Confidential"
+                  }}</span>
+                </div>
+              </div>
+
+              <div class="col-md-12 my-2">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">Industry:</span>
+                  <span>{{ selectedCompany?.companyIndustry }}</span>
+                </div>
+              </div>
+
+              <div class="col-md-12 my-2">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">Email:</span>
+                  <span>{{ selectedCompany?.companyEmail }}</span>
+                </div>
+              </div>
+
+              <div class="col-md-12 my-2">
+                <div class="d-flex justify-content-between">
+                  <span class="fw-semibold">Location:</span>
+                  <small class="text-muted">
+                    <i class="bx bx-map-pin"></i>
+                    {{ selectedCompany?.companyAddress }}
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="my-3 d-flex justify-content-end">
+              <a
+                [href]="selectedCompany?.companyWebsiteUrl"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-sm btn-outline-primary"
+                *ngIf="selectedCompany?.companyWebsiteUrl"
+              >
+                Visit Website
+              </a>
+            </div>
+          </div>
+
+          <!-- Confidential Block -->
+          <ng-template #confidentialBlock>
+            <div class="text-center py-4 text-muted fw-semibold">
+              Company Data Confidential
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="title">Similar Jobs</h5>
+        </div>
+
+        @for (sJob of similarJobs; track $index) {
+        <div class="d-flex align-items-start gap-3 py-2 border-bottom">
+          <img
+            [src]="sJob.logo || 'assets/default-logo.png'"
+            alt="logo"
+            class="rounded"
+            style="width: 40px; height: 40px"
+          />
+          <div>
+            <h6 class="fw-semibold title mb-1">{{ sJob.title }}</h6>
+
+            <!-- company name -->
+            <p class="mb-1 text-muted small">
+              {{ sJob.companyName || "Confidential" }}
+            </p>
+
+            <!-- experience -->
+            <p class="mb-1 text-muted small">
+              <i class="bx bx-briefcase"></i>
+              {{
+                sJob.experience ? sJob.experience + " years" : "Experience N/A"
+              }}
+            </p>
+
+            <!-- location -->
+            <p class="mb-1 text-muted small">
+              <i class="bx bx-map-pin"></i> {{ sJob.location }}
+            </p>
+
+            <!-- salary -->
+            <p class="mb-0 text-muted small">
+              <i class="bx bx-money"></i>
+              {{ sJob.salary || "Salary Not Specified" }}
+            </p>
+          </div>
+        </div>
+        }
+      </div>
+
+      <div class="card p-4 mt-4 job-card">
+        <h4 class="fw-bold mb-3 title">
+          {{ "SHARE_JOBS" | translate }}
+        </h4>
+        <div class="d-flex gap-2">
+          <a
+            [href]="getLinkedInShareUrl()"
+            target="_blank"
+            class="social-btn linkedin"
+          >
+            <i class="bx bxl-linkedin"></i>
+          </a>
+
+          <a
+            [href]="getFacebookShareUrl()"
+            target="_blank"
+            class="social-btn facebook"
+          >
+            <i class="bx bxl-facebook"></i>
+          </a>
+
+          <a
+            [href]="getTwitterShareUrl()"
+            target="_blank"
+            class="social-btn twitter"
+          >
+            <i class="bx bxl-twitter"></i>
+          </a>
+
+          <a
+            [href]="getInstagramShareUrl()"
+            target="_blank"
+            class="social-btn instagram"
+          >
+            <i class="bx bxl-instagram"></i>
+          </a>
+
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary rounded-circle social-btn border"
+            (click)="copyJobUrl()"
+          >
+            <i class="bx bx-link-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-sign-up
+  *ngIf="selectedJob"
+  [jobTitle]="selectedJob?.title"
+  [jobId]="selectedJob?.jobId"
+>
+</app-sign-up>

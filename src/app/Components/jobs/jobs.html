@@ -1,0 +1,83 @@
+<div class="container">
+  <h2 class="text-center mb-5 fw-bold section-title title w-100">
+    {{ "OPPORTUNITIES.TITLE" | translate }}
+  </h2>
+
+  <div class="row g-4" *ngIf="isLoading">
+    <div class="col-md-6" *ngFor="let s of [1, 2, 3, 4, 5, 6]">
+      <div class="card job-card shadow-sm h-100 d-flex flex-column skeleton">
+        <div class="mb-3">
+          <div class="skeleton-line title"></div>
+          <div class="skeleton-line small"></div>
+          <div class="skeleton-line small"></div>
+        </div>
+        <div class="mt-auto pt-2 text-end">
+          <div class="skeleton-button"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4" *ngIf="!isLoading">
+    <div class="col-md-6" *ngFor="let job of jobs">
+      <div class="card job-card shadow-sm h-100 d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div>
+            <h5 class="job-title mb-1">
+              <a [routerLink]="['/job', job.jobId]" class="cursor-pointer"><i class="bx bx-briefcase me-1 mb-2"></i> {{
+                job.title }}</a>
+            </h5>
+            <p class="job-location mb-2 d-flex align-items-center">
+              <i class="bx bx-map me-1"></i>
+              <img *ngIf="job.flagUrl" [src]="job.flagUrl" class="flag-img me-2" alt="Flag" />
+              {{ job.location }}
+            </p>
+
+            <p class="job-salary mb-2">
+              <i class="bx bx-money me-1"></i> {{ job.salary }}
+            </p>
+          </div>
+
+          <div class="company-logo-wrapper" *ngIf="job.companyLogoUrl">
+            <img [src]="job.companyLogoUrl" class="company-logo" alt="{{ job.companyName }} Logo" />
+          </div>
+        </div>
+
+        <div class="job-footer d-flex align-items-center justify-content-between flex-wrap mt-3">
+          <div class="d-flex flex-wrap gap-2 align-items-center">
+            <span class="job-badge bg-grey text-muted d-flex align-items-center gap-1">
+              <i class="bx" [ngClass]="{
+        'bx-male': job.gender === 'Male',
+        'bx-female': job.gender === 'Female',
+        'bx-user': job.gender !== 'Male' && job.gender !== 'Female'
+      }"></i>
+              {{ job.gender || "Any" }}
+            </span>
+
+            <span class="job-badge text-white d-flex align-items-center gap-1" [ngClass]="{
+      'bg-success': job.status,
+      'bg-danger': !job.status
+    }">
+              <i class="bx" [ngClass]="job.status ? 'bx-check-circle' : 'bx-x-circle'"></i>
+              {{ job.status ? 'Active Job' : 'Inactive' }}
+            </span>
+          </div>
+
+          <div class="apply-btn-wrapper mt-2 mt-md-0">
+            <a [routerLink]="['/job', job.jobId]" class="btn btn-apply">
+              {{ "OPPORTUNITIES.APPLY" | translate }}
+            </a>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a routerLink="/jobs" class="btn btn-primary btn-md">
+      {{ "OPPORTUNITIES.SEE_MORE" | translate }}
+    </a>
+  </div>
+</div>

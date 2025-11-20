@@ -1,0 +1,107 @@
+:root {
+  /* 🎨 Color System */
+  --oap-primary: #0a174e;
+  --oap-secondary: #4a90e2;
+  --oap-gradient: linear-gradient(135deg, #4a6fb6 0%, #9ab3de 100%);
+  --oap-text-dark: #0a174e;
+  --oap-text-light: #ffffff;
+  --oap-text-muted: rgba(255, 255, 255, 0.8);
+  --oap-border: rgba(255, 255, 255, 0.3);
+  --oap-shadow: rgba(0, 0, 0, 0.1);
+  --oap-bg-light: #ffffff;
+  --oap-bg-dark: #0a174e;
+
+  /* ✍️ Typography */
+  --font-poppins: "Poppins", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+  --line-height-default: 1.6;
+  --letter-spacing-default: 0.01em;
+
+  /* 📏 Font Sizes */
+  --fs-sm: 0.9rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+
+  /* 🧭 Misc */
+  --radius-md: 10px;
+  --radius-lg: 20px;
+  --transition-default: all 0.3s ease;
+
+  --brand-red: #ff4b2b;
+  --brand-blue: #0a174e;
+}
+
+/* 🌐 Global Typography + Reset */
+html,
+body {
+  font-family: var(--font-poppins) !important;
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-default) !important;
+  letter-spacing: var(--letter-spacing-default) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--oap-text-dark);
+  background-color: var(--oap-bg-light);
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  font-family: inherit !important;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit !important;
+  line-height: 1.25;
+  color: var(--oap-text-dark);
+  margin: 0 0 0.5rem 0;
+}
+
+p, span, small, strong, em, i, b, u, mark,
+blockquote, figcaption, a, li, dt, dd, label,
+legend, th, td, caption, code, kbd, samp, pre,
+button, input, select, textarea {
+  font-family: inherit !important;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  font-weight: inherit;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--oap-primary);
+  border-color: var(--oap-primary);
+  color: #fff;
+  font-family: inherit;
+}
+
+/* Utility */
+.fw-semibold { font-weight: var(--font-weight-medium); }
+.fw-bold { font-weight: var(--font-weight-bold); }
+
+a {
+  text-decoration: none;
+  color: var(--oap-primary);
+}
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* Structural Reset */
+app-sidebar,
+aside,
+app-accordian,
+.accordion,
+.accordion-collapse {
+  position: static !important;
+  transform: none !important;
+  filter: none !important;
+  z-index: auto !important;
+}

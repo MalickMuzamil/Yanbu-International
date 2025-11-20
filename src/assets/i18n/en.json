@@ -1,0 +1,178 @@
+{
+  "HOME": "Home",
+  "JOBS": "Jobs",
+  "SERVICE": "Services",
+  "HIRE": "Hire Talent",
+  "YANBU": "YANBU",
+  "INTERNATIONAL": "INTERNATIONAL",
+
+  "HERO": {
+    "TITLE": "CONNECTING TALENT ACROSS BORDERS",
+    "SUBTITLE": "We link skilled professionals with top companies in Saudi Arabia & GCC",
+    "FOR_COMPANIES": "FOR COMPANIES",
+    "FOR_JOBSEEKERS": "FOR JOB SEEKERS"
+  },
+
+  "ABOUT": {
+    "TITLE": "ABOUT US",
+    "SUBTITLE": "Connecting talent with opportunity across the Gulf region.",
+    "POINT1": "Fast and efficient placement-services",
+    "POINT2": "Pre-screened, qualified candidates",
+    "POINT3": "Expertise in the GCC job market",
+    "POINT4": "Tailored recruitment solutions for every industry",
+    "POINT5": "Strong network with leading regional companies",
+    "POINT6": "Dedicated support throughout the hiring process"
+  },
+
+  "OPPORTUNITIES": {
+    "TITLE": "LATEST OPPORTUNITIES",
+    "APPLY": "APPLY NOW",
+    "SEE_MORE": "See More Jobs",
+    "JOB1": {
+      "TITLE": "Sales Executive",
+      "LOCATION": "Saudi Arabia - NES"
+    },
+    "JOB2": {
+      "TITLE": "Accountant",
+      "LOCATION": "United Biltos - Almarai"
+    },
+    "JOB3": {
+      "TITLE": "IT Specialist",
+      "LOCATION": "Oman - ADC"
+    },
+    "JOB4": {
+      "TITLE": "Mechanical Engineer",
+      "LOCATION": "UAE - Roneer"
+    }
+  },
+
+  "SERVICES": {
+    "TITLE": "Services for Companies",
+    "SUBTITLE": "Fast, compliant recruitment across Saudi Arabia & GCC end-to-end support from sourcing to mobilization.",
+
+    "SERVICE1": {
+      "TITLE": "Executive & Specialised Search",
+      "LOCATION": "Saudi Arabia",
+      "NOTE": "Competitive Salary"
+    },
+    "SERVICE2": {
+      "TITLE": "High-Volume / Project Hiring",
+      "LOCATION": "Saudi Arabia",
+      "NOTE": "Screening & Assessments"
+    },
+    "SERVICE3": {
+      "TITLE": "Visa, Mobilization & Onboarding",
+      "LOCATION": "Saudi Arabia",
+      "NOTE": "Smooth processing & onboarding"
+    },
+    "SERVICE4": {
+      "TITLE": "EOR & Payroll",
+      "LOCATION": "UAE",
+      "NOTE": "Screening & Payroll Solutions"
+    },
+    "SERVICE5": {
+      "TITLE": "Saudization & Localization",
+      "LOCATION": "UAE",
+      "NOTE": "Free Replacement Now"
+    },
+
+    "METRICS": {
+      "FIRST": "48-72h",
+      "FIRST_NOTE": "First shortlists",
+      "SECOND": "250k+",
+      "SECOND_NOTE": "Candidate network",
+      "THIRD": "96%",
+      "THIRD_NOTE": "50-day retention",
+      "COMPLIANT": "G2",
+      "COMPLIANT_NOTE": "Compliant prod-standards"
+    },
+
+    "STEPS": {
+      "BRIEF": "1 Brief",
+      "BRIEF_NOTE": "First shortlist",
+      "SHORTLIST": "2 Shortlist",
+      "SHORTLIST_NOTE": "Candidate",
+      "INTERVIEWS": "3 Interviews",
+      "INTERVIEWS_NOTE": "Offer Letter"
+    },
+
+    "REQUEST_PROPOSAL": "Request a Proposal",
+    "DISCOVERY_CALL": "Book a Discovery Call"
+  },
+
+  "TESTIMONIALS": {
+    "TITLE": "SUCCESS STORIES FROM OUR CLIENTS",
+    "CARD1": {
+      "NAME": "Mahmoud Zaki",
+      "ROLE": "Electrical Engineer",
+      "TEXT": "Yanbu International helped me secure a great position in Riyadh smoothly: Highly professional and supportive team!"
+    },
+    "CARD2": {
+      "NAME": "Mr. Abdullah Hussain",
+      "ROLE": "Fornader",
+      "TEXT": "We found the perfect candidate through Yanbu International: Highly recommended for efficient hiring!"
+    },
+    "CARD3": {
+      "NAME": "Mr. Abdullah Hussain",
+      "ROLE": "Fornader",
+      "TEXT": "We found the perfect candidate through Yanbu International: Highly recommended for efficient hiring!"
+    }
+  },
+
+  "FOOTER": {
+    "NAVIGATION": {
+      "TITLE": "Navigation",
+      "HOME": "Home",
+      "JOBS": "Jobs",
+      "SERVICES": "Services"
+    },
+    "ADDRESS": {
+      "TITLE": "Address",
+      "LINE1": "123 Anywhere St.",
+      "LINE2": "Any City, State 12345"
+    },
+    "CONTACT": {
+      "TITLE": "Contact",
+      "EMAIL": "hr@yanbuinternational.com",
+      "PHONE": "+966 55 477 9470"
+    },
+    "FOLLOW": {
+      "TITLE": "Follow Us"
+    },
+    "ADMIN": {
+      "TITLE": "Administrator",
+      "LOGIN": "Admin Login"
+    },
+    "RIGHTS": {
+      "ALL": "All Rights",
+      "RESERVED": "Reserved"
+    }
+  },
+
+  "ALLJOBS": "Jobs",
+  "KEYWORD": "Keyword",
+  "LOCATION": "Location",
+  "ALL_CATEGORIES": "All Categories",
+  "SEARCH": "Search",
+  "CATEGORY": "Category",
+  "JOB_TYPE": "Job Type",
+  "POSTED_DATE": "Posted date",
+  "JOB_ALERTS": "Job Alerts",
+  "FULL_TIME": "Full-Time",
+  "PART_TIME": "Part-Time",
+  "LAST_24_HOURS": "Last 24 hours",
+  "LAST_7_DAYS": "Last 7 days",
+  "LAST_14_DAYS": "Last 14 days",
+  "LAST_30_DAYS": "Last 30 days",
+  "YOUR_EMAIL": "Your email",
+  "SUBSCRIBE": "Subscribe",
+  "SHARE_JOBS": "Share Jobs",
+  "GET_RECOMMEND": "Get Personalised Jobs Recommendations",
+  "REGISTER_TEXT": "Registering gives you the benefit to apply to a variety of jobs based on your preferences in just one click",
+  "REGISTER_FREE": "Register For Free",
+  "APPLY_NOW": "Apply Now",
+  "EASY_APPLY": "Easy Apply",
+  "COMPETITIVE_SALARY": "Competitive Salary",
+  "ACCOMMODATION_ALLOWANCE": "Accommodation Allowance",
+  "FREE_TRANSPORTATION": "Free Transportation"
+}

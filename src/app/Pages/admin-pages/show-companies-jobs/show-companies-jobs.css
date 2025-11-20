@@ -1,0 +1,39 @@
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.table thead th {
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  background-color: #fff;
+  color: #000000;
+}
+
+.table tbody tr:hover {
+  background-color: #f5f9ff;
+  cursor: pointer;
+}
+
+.table td,
+.table th {
+  padding: 12px 15px;
+  vertical-align: middle;
+  font-size: 0.75rem;
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.input-group {
+  position: static !important;
+}
+
+.search-input {
+  position: static !important;
+}

@@ -1,0 +1,10 @@
+app-accordian,
+app-accordian *,
+.accordion,
+.accordion *,
+.accordion-collapse,
+.accordion-collapse * {
+  position: relative !important;
+  z-index: 1 !important;
+  overflow: visible !important;
+}

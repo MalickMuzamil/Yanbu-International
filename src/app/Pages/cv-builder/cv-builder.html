@@ -1,0 +1,970 @@
+<div class="d-flex" style="height: 100vh">
+  <app-candidate-sidebar *ngIf="!isCollapsed"
+    style="position: sticky; top: 0; height: 100vh; flex-shrink: 0"></app-candidate-sidebar>
+
+  <div class="cv-builder container-fluid" style="overflow-y: auto">
+    <div class="row">
+      <!-- Sidebar Steps -->
+      <div class="col-md-2 cv-sidebar-steps p-4 border-end d-flex flex-column">
+        <div class="collapse-btn position-absolute top-0 start-0 m-2 d-none d-md-block">
+          <button class="btn btn-sm btn-danger" (click)="isCollapsed = !isCollapsed">
+            <i class="bx" [ngClass]="isCollapsed ? 'bx-chevron-right' : 'bx-chevron-left'">
+            </i>
+          </button>
+        </div>
+
+        <div class="text-center mb-5">
+          <h5 class="fw-bold form-heading">NextStep CV</h5>
+        </div>
+
+        <div class="flex-grow-1">
+          <h6 class="fw-bold mb-4 text-uppercase text-muted">Steps</h6>
+          <ul class="list-unstyled steps-list">
+            <li class="step-item" [class.active]="activeStep === 'heading'" [class.completed]="isCompleted('heading')">
+              <span class="step-number">1</span>
+              CV Heading
+            </li>
+            <li class="step-item" [class.active]="activeStep === 'work'" [class.completed]="isCompleted('work')">
+              <span class="step-number">2</span>
+              Work History
+            </li>
+            <li class="step-item" [class.active]="activeStep === 'education'"
+              [class.completed]="isCompleted('education')">
+              <span class="step-number">3</span>
+              Education
+            </li>
+            <li class="step-item" [class.active]="activeStep === 'skills'" [class.completed]="isCompleted('skills')">
+              <span class="step-number">4</span>
+              Skills
+            </li>
+            <li class="step-item" [class.active]="activeStep === 'summary'" [class.completed]="isCompleted('summary')">
+              <span class="step-number">5</span>
+              Summary
+            </li>
+            <li class="step-item" [class.active]="activeStep === 'references'"
+              [class.completed]="isCompleted('references')">
+              <span class="step-number">6</span>
+              References
+            </li>
+            <li class="step-item" [class.active]="activeStep === 'hobbies'" [class.completed]="isCompleted('hobbies')">
+              <span class="step-number">7</span>
+              Hobbies
+            </li>
+            <li class="step-item" [class.active]="activeStep === 'additionalInfo'"
+              [class.completed]="isCompleted('additionalInfo')">
+              <span class="step-number">8</span>
+              Additional Info
+            </li>
+
+            <li class="step-item" [class.active]="activeStep === 'finalize'"
+              [class.completed]="isCompleted('finalize')">
+              <span class="step-number">9</span>
+              Finalize
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Form Area -->
+      <div class="col-md-5 p-4 form-area">
+        <div class="mb-5">
+          <h3 class="fw-bold form-heading mb-4">
+            Design a CV That Opens Doors
+          </h3>
+        </div>
+        <form [formGroup]="cvForm" novalidate>
+          <!-- HEADING -->
+          <div *ngIf="activeStep === 'heading'" class="row">
+            <div class="col-12 mb-3 text-center">
+              <input type="file" accept="image/*" id="pictureInput" hidden (change)="onProfileImageSelected($event)" />
+              <label for="pictureInput" class="d-inline-block cursor-pointer">
+                <div class="upload-avatar mb-2 d-flex align-items-center justify-content-center border"
+                  style="width: 140px; height: 160px; background-color: #f8f9fa">
+                  <img [src]="cvForm.value.picture || 'assets/default-profile.png'" alt="Profile"
+                    style="max-width: 100%; max-height: 100%; object-fit: cover" />
+                </div>
+                <div class="form-heading fw-bold small" style="cursor: pointer">
+                  + Upload photo
+                </div>
+              </label>
+            </div>
+
+            <!-- First Name -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-control" formControlName="firstName" placeholder="e.g. John" />
+              <div class="text-danger small" *ngIf="
+                  cvForm.get('firstName')?.touched &&
+                  cvForm.get('firstName')?.invalid
+                ">
+                First Name is required
+              </div>
+            </div>
+
+            <!-- Surname -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Surname</label>
+              <input type="text" class="form-control" formControlName="surname" placeholder="e.g. Victory" />
+              <div class="text-danger small" *ngIf="
+                  cvForm.get('surname')?.touched &&
+                  cvForm.get('surname')?.invalid
+                ">
+                Surname is required
+              </div>
+            </div>
+
+            <!-- Job Title -->
+            <div class="col-12 mb-3">
+              <label class="form-label">Job Title</label>
+              <input type="text" class="form-control" formControlName="jobTitle" placeholder="e.g. Software Engineer" />
+              <div class="text-danger small" *ngIf="
+                  cvForm.get('jobTitle')?.touched &&
+                  cvForm.get('jobTitle')?.invalid
+                ">
+                Job Title is required
+              </div>
+            </div>
+
+            <!-- Street Address -->
+            <div class="col-12 mb-3">
+              <label class="form-label">Street Address</label>
+              <input type="text" class="form-control" formControlName="streetAddress" placeholder="e.g. Street 178" />
+              <div class="text-danger small" *ngIf="
+                  cvForm.get('streetAddress')?.touched &&
+                  cvForm.get('streetAddress')?.invalid
+                ">
+                Street Address is required
+              </div>
+            </div>
+
+            <!-- City -->
+            <div class="col-md-4 mb-3">
+              <label class="form-label">City</label>
+              <input type="text" class="form-control" formControlName="city" placeholder="e.g. NewYork" />
+              <div class="text-danger small" *ngIf="
+                  cvForm.get('city')?.touched && cvForm.get('city')?.invalid
+                ">
+                City is required
+              </div>
+            </div>
+
+            <!-- Country -->
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Country</label>
+              <input type="text" class="form-control" formControlName="country" placeholder="e.g. England" />
+              <div class="text-danger small" *ngIf="
+                  cvForm.get('country')?.touched &&
+                  cvForm.get('country')?.invalid
+                ">
+                Country is required
+              </div>
+            </div>
+
+            <!-- Postcode -->
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Postcode</label>
+              <input type="text" class="form-control" formControlName="postcode" placeholder="e.g. 12345" />
+              <div class="text-danger small" *ngIf="
+                  cvForm.get('postcode')?.touched &&
+                  cvForm.get('postcode')?.invalid
+                ">
+                Postcode is required
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Phone</label>
+              <input type="text" class="form-control" formControlName="phone" placeholder="e.g. xxxxxxxx" />
+              <div class="text-danger small"
+                *ngIf="cvForm.get('phone')?.touched && cvForm.get('phone')?.errors?.['required']">
+                Phone is required
+              </div>
+              <div class="text-danger small"
+                *ngIf="cvForm.get('phone')?.touched && cvForm.get('phone')?.errors?.['pattern']">
+                Invalid phone number
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" formControlName="email" placeholder="e.g. test@gmail.com" />
+              <div class="text-danger small"
+                *ngIf="cvForm.get('email')?.touched && cvForm.get('email')?.errors?.['required']">
+                Email is required
+              </div>
+              <div class="text-danger small"
+                *ngIf="cvForm.get('email')?.touched && cvForm.get('email')?.errors?.['email']">
+                Enter a valid email
+              </div>
+            </div>
+
+            <div class="col-12 text-end mt-3">
+              <button type="button" class="btn btn-primary" (click)="goNext()">
+                Continue →
+              </button>
+            </div>
+          </div>
+
+          <!-- WORK HISTORY -->
+          <div *ngIf="activeStep === 'work'">
+            <h6 class="fw-bold mb-3">Work History</h6>
+            <div *ngFor="let exp of experienceControls; let i = index" [formGroup]="exp">
+              <input formControlName="company" placeholder="Company" class="form-control mb-2" />
+              <div class="text-danger small" *ngIf="
+                  exp.get('company')?.touched && exp.get('company')?.invalid
+                ">
+                Company is required
+              </div>
+
+              <input formControlName="role" placeholder="Role" class="form-control mb-2" />
+              <input formControlName="from" placeholder="From" class="form-control mb-2" />
+              <input formControlName="to" placeholder="To" class="form-control mb-2" />
+              <textarea formControlName="details" placeholder="Details" class="form-control mb-2"></textarea>
+
+              <button type="button" (click)="removeExperience(i)" class="btn btn-sm btn-danger my-3">
+                Remove
+              </button>
+            </div>
+            <button type="button" (click)="addExperience()" class="btn btn-outline-primary my-3">
+              + Add Experience
+            </button>
+
+            <div class="col-12 text-end mt-3">
+              <button type="button" class="btn btn-primary" (click)="goNext()">
+                Continue →
+              </button>
+            </div>
+          </div>
+
+          <!-- EDUCATION -->
+          <div *ngIf="activeStep === 'education'">
+            <h6 class="fw-bold mb-3">Education</h6>
+            <div *ngFor="let edu of educationControls; let i = index" [formGroup]="edu">
+              <input formControlName="degree" placeholder="Degree" class="form-control mb-2" />
+              <div class="text-danger small" *ngIf="edu.get('degree')?.touched && edu.get('degree')?.invalid">
+                Degree is required
+              </div>
+
+              <input formControlName="institute" placeholder="Institute" class="form-control mb-2" />
+              <input formControlName="from" placeholder="From" class="form-control mb-2" />
+              <input formControlName="to" placeholder="To" class="form-control mb-2" />
+              <button type="button" (click)="removeEducation(i)" class="btn btn-sm btn-danger my-4">
+                Remove
+              </button>
+            </div>
+            <button type="button" (click)="addEducation()" class="btn btn-outline-primary">
+              + Add Education
+            </button>
+
+            <div class="col-12 text-end mt-3">
+              <button type="button" class="btn btn-primary" (click)="goNext()">
+                Continue →
+              </button>
+            </div>
+          </div>
+
+          <!-- SKILLS -->
+          <div *ngIf="activeStep === 'skills'">
+            <h6 class="fw-bold mb-3">Skills</h6>
+            <textarea formControlName="skills" placeholder="e.g. Angular, Node.js, SQL" class="form-control"></textarea>
+
+            <h6 class="fw-bold my-3">Languages</h6>
+            <div *ngFor="let lang of languageControlsArray; let i = index" [formGroup]="lang" class="mb-3">
+              <input formControlName="name" placeholder="Language" class="form-control mb-2" />
+              <select formControlName="proficiency" class="form-select mb-2">
+                <option value="">Select Proficiency</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Native">Native</option>
+              </select>
+              <button type="button" class="btn btn-sm btn-danger mb-3" (click)="removeLanguage(i)">
+                Remove
+              </button>
+            </div>
+
+            <button type="button" class="btn btn-outline-primary mb-3" (click)="addLanguage()">
+              + Add Language
+            </button>
+
+            <div class="col-12 text-end mt-3">
+              <button type="button" class="btn btn-primary" (click)="goNext()">
+                Continue →
+              </button>
+            </div>
+          </div>
+
+          <!-- SUMMARY -->
+          <div *ngIf="activeStep === 'summary'">
+            <h6 class="fw-bold mb-3">Professional Summary</h6>
+            <textarea formControlName="summary" rows="5" class="form-control"></textarea>
+
+            <div class="col-12 text-end mt-3">
+              <button type="button" class="btn btn-primary" (click)="goNext()">
+                Continue →
+              </button>
+            </div>
+          </div>
+
+          <!-- REFERENCES -->
+          <div *ngIf="activeStep === 'references'">
+            <h6 class="fw-bold mb-3">References</h6>
+            <textarea formControlName="references" placeholder="Enter references separated by commas"
+              class="form-control"></textarea>
+
+            <div class="col-12 text-end mt-3">
+              <button type="button" class="btn btn-primary" (click)="goNext()">
+                Continue →
+              </button>
+            </div>
+          </div>
+
+          <!-- HOBBIES -->
+          <div *ngIf="activeStep === 'hobbies'">
+            <h6 class="fw-bold mb-3">Hobbies</h6>
+            <textarea formControlName="hobbies" placeholder="Enter hobbies separated by commas"
+              class="form-control"></textarea>
+
+            <div class="col-12 text-end mt-3">
+              <button type="button" class="btn btn-primary" (click)="goNext()">
+                Continue →
+              </button>
+            </div>
+          </div>
+
+          <!-- ADDITIONAL INFO -->
+          <div *ngIf="activeStep === 'additionalInfo'">
+            <h6 class="fw-bold mb-3">Additional Information</h6>
+            <div *ngFor="let item of additionalInfoControls; let i = index" [formGroup]="item" class="mb-3">
+              <select class="form-select mb-2" formControlName="type">
+                <option value="">Select Type</option>
+                <option value="url">Any Web / Professional Website URL</option>
+                <option value="document">Certification / Document</option>
+              </select>
+
+              <input type="text" class="form-control mb-2" formControlName="title"
+                placeholder="Enter Label (e.g. LinkedIn, Portfolio, Certificate Name)" />
+
+              <input *ngIf="item.value.type === 'url'" type="url" class="form-control mb-2" formControlName="url"
+                placeholder="Enter URL" />
+
+              <input *ngIf="item.value.type === 'document'" type="file" class="form-control mb-2"
+                (change)="onDocumentSelected($event, i)" />
+
+              <button type="button" class="btn btn-sm btn-danger" (click)="removeAdditionalInfo(i)">
+                Remove
+              </button>
+            </div>
+
+            <button type="button" class="btn btn-outline-primary" (click)="addAdditionalInfo()">
+              + Add Item
+            </button>
+
+            <div class="col-12 text-end mt-3">
+              <button type="button" class="btn btn-primary" (click)="goNext()">
+                Continue →
+              </button>
+            </div>
+          </div>
+
+          <!-- FINALIZE -->
+          <div *ngIf="activeStep === 'finalize'">
+            <h6 class="fw-bold mb-3">Finalize & Download</h6>
+            <button type="button" class="btn btn-success w-100" (click)="downloadPDF()">
+              Download PDF
+            </button>
+
+            <div class="col-12 text-end mt-3">
+              <button type="button" class="btn btn-primary" (click)="goNext()">
+                Continue →
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- CV Preview -->
+      <div class="col-md-5 p-4 bg-light">
+        <div class="d-flex justify-content-end align-items-center mb-4">
+          <button type="button" class="btn btn-outline-secondary btn-sm" (click)="showTemplates = true">
+            <i class="bi bi-layout-text-window-reverse me-1"></i> Choose
+            Template
+          </button>
+        </div>
+
+        <h6 class="fw-bold text-muted mb-3">Live Preview</h6>
+        <div id="cv-preview" class="shadow rounded bg-white">
+          <ng-container *ngIf="selectedTemplate === 1">
+            <div class="cv-1-container">
+              <!-- Sidebar -->
+              <div class="cv-1-sidebar text-center">
+                <img [src]="cvForm.value.picture || 'assets/default-profile.png'" alt="Profile"
+                  class="profile-pic mb-3" />
+                <h4 class="fw-bold text-white">{{ fullName }}</h4>
+                <p class="job-title">
+                  {{ cvForm.value.jobTitle || "Job Title" }}
+                </p>
+
+                <!-- Contact -->
+                <div class="cv-1-section text-start mt-4">
+                  <h6>Contact</h6>
+                  <p class="sidebar-text d-flex" style="align-items: baseline">
+                    <i class="bx bx-envelope me-1"></i>
+                    {{ cvForm.value.email }}
+                  </p>
+                  <p class="sidebar-text d-flex" style="align-items: baseline">
+                    <i class="bx bx-phone me-1"></i>
+                    {{ cvForm.value.phone }}
+                  </p>
+                  <p class="sidebar-text d-flex" style="align-items: baseline">
+                    <i class="bx bx-map me-1"></i>
+                    {{ fullAddress }}
+                  </p>
+                </div>
+
+                <!-- Languages -->
+                <div class="cv-1-section text-start">
+                  <h6>Languages</h6>
+                  <p class="sidebar-text">{{ languagesList }}</p>
+                </div>
+
+                <div class="cv-1-section text-start mt-3" *ngIf="additionalInfoList.length > 0">
+                  <h6>Additional Information</h6>
+                  <ul class="sidebar-text list-unstyled">
+                    <li *ngFor="let item of additionalInfoList">
+                      <a [href]="item.url" target="_blank" rel="noopener noreferrer" *ngIf="item.url"
+                        class="text-white">
+                        {{ item.title || 'Document / Link' }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+
+              </div>
+
+              <!-- Main Content -->
+              <div class="cv-1-content">
+                <div class="cv-1-header mb-4 position-relative">
+                  <h2 class="fw-bold">{{ fullName }}</h2>
+                  <h5 class="text-muted">
+                    {{ cvForm.value.jobTitle || "Job Title" }}
+                  </h5>
+                </div>
+
+                <!-- About -->
+                <div class="cv-1-section mb-4">
+                  <h6><i class="bx bx-user"></i> About Me</h6>
+                  <p class="word-break">
+                    {{
+                    cvForm.value.summary ||
+                    "Write a short professional summary about yourself..."
+                    }}
+                  </p>
+                </div>
+
+                <!-- Education -->
+                <div class="cv-1-section mb-4" *ngIf="educationControls.length > 0">
+                  <h6 class="fw-bold border-bottom pb-2 mb-3">
+                    <i class="bx bx-book"></i> Education
+                  </h6>
+                  <div *ngFor="let edu of educationControls" class="mb-3">
+                    <p class="mb-1">
+                      <strong *ngIf="edu.value.degree">{{
+                        edu.value.degree
+                        }}</strong>
+                      <span *ngIf="edu.value.degree && edu.value.institute">
+                        -
+                      </span>
+                      <span *ngIf="edu.value.institute">{{
+                        edu.value.institute
+                        }}</span>
+                    </p>
+                    <small class="text-muted" *ngIf="edu.value.from || edu.value.to">
+                      {{ edu.value.from || "" }}
+                      <span *ngIf="edu.value.from && edu.value.to"> - </span>
+                      {{ edu.value.to || "" }}
+                    </small>
+                  </div>
+                </div>
+
+                <!-- Work Experience -->
+                <div class="cv-1-section mb-4" *ngIf="experienceControls.length > 0">
+                  <h6 class="fw-bold border-bottom pb-2 mb-3">
+                    <i class="bx bx-briefcase"></i> Work Experience
+                  </h6>
+                  <div *ngFor="let exp of experienceControls" class="mb-3">
+                    <p class="mb-1">
+                      <strong *ngIf="exp.value.role">{{
+                        exp.value.role
+                        }}</strong>
+                      <span *ngIf="exp.value.role && exp.value.company">
+                        at
+                      </span>
+                      <span *ngIf="exp.value.company">{{
+                        exp.value.company
+                        }}</span>
+                    </p>
+                    <small class="text-muted d-block mb-1" *ngIf="exp.value.from || exp.value.to">
+                      {{ exp.value.from || "" }}
+                      <span *ngIf="exp.value.from && exp.value.to"> - </span>
+                      {{ exp.value.to || "" }}
+                    </small>
+                    <p class="mb-0" *ngIf="exp.value.details">
+                      {{ exp.value.details }}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="cv-1-section mb-4" *ngIf="skillsArray.length > 0">
+                  <h6><i class="bx bx-star"></i> Skills</h6>
+                  <div class="d-flex flex-wrap gap-2">
+                    <span class="badge bg-primary" *ngFor="let skill of skillsArray">
+                      {{ skill }}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- References -->
+                <div class="cv-1-section mb-4">
+                  <h6><i class="bx bx-user-check"></i> References</h6>
+                  <ul class="ps-3" *ngIf="referencesArray.length > 0">
+                    <li *ngFor="let reference of referencesArray">
+                      {{ reference }}
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Hobbies -->
+                <div class="cv-1-section mb-4">
+                  <h6><i class="bx bx-happy"></i> Hobbies</h6>
+                  <div class="d-flex flex-wrap gap-2" *ngIf="hobbiesArray.length > 0">
+                    <span class="badge bg-secondary" *ngFor="let hobby of hobbiesArray">
+                      {{ hobby }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="selectedTemplate === 2">
+            <div class="cv-template-2 shadow rounded overflow-hidden" style="
+                font-family: 'Segoe UI', sans-serif;
+                background: #fff;
+                color: #333;
+              ">
+              <!-- Header -->
+              <div class="p-4 border-bottom" style="background: #045d55; color: #fff">
+                <div class="cv-template-2-header">
+                  <div class="candidate-info">
+                    <img [src]="
+                        cvForm.value.picture || 'assets/default-profile.png'
+                      " alt="Profile" class="rounded" style="
+                        width: 120px;
+                        height: 140px;
+                        object-fit: cover;
+                        border: 3px solid #fff;
+                      " />
+                    <div class="d-flex flex-column">
+                      <h2 class="fw-bold m-0 text-white">{{ fullName }}</h2>
+                      <h5 class="text-white">
+                        {{ cvForm.value.jobTitle || "Job Title" }}
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row m-0">
+                <!-- Sidebar -->
+                <div class="col-md-4 p-4" style="
+                    background: #022421;
+                    border-right: 1px solid #ddd;
+                    color: #fff;
+                  ">
+                  <!-- Contact -->
+                  <div class="mb-4">
+                    <h6 class="fw-bold text-uppercase mb-3" style="color: #fff">
+                      <i class="bx bx-phone me-2"></i> Contact
+                    </h6>
+                    <hr style="border-color: rgba(255, 255, 255, 0.2)" />
+
+                    <div class="d-flex mb-2" style="color: #f5f5f5; align-items: baseline">
+                      <i class="bx bx-envelope me-2"></i>
+                      <span style="word-wrap: break-word; overflow-wrap: anywhere">
+                        {{ cvForm.value.email }}
+                      </span>
+                    </div>
+
+                    <div class="d-flex mb-2" style="color: #f5f5f5; align-items: baseline">
+                      <i class="bx bx-phone-call me-2"></i>
+                      <span>{{ cvForm.value.phone }}</span>
+                    </div>
+
+                    <div class="d-flex" style="color: #f5f5f5; align-items: baseline">
+                      <i class="bx bx-map me-2"></i>
+                      <span style="word-wrap: break-word; overflow-wrap: anywhere">
+                        {{ fullAddress }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Skills -->
+                  <div *ngIf="skillsArray.length > 0" class="mb-4">
+                    <h6 class="fw-bold text-uppercase mb-3" style="color: #fff">
+                      <i class="bx bx-star me-2"></i> Skills
+                    </h6>
+                    <div class="d-flex flex-wrap gap-2">
+                      <span class="badge" *ngFor="let skill of skillsArray" style="
+                          font-size: 13px;
+                          padding: 6px 10px;
+                          border-radius: 20px;
+                          background: #045d55;
+                          color: #f5f5f5;
+                        ">{{ skill }}</span>
+                    </div>
+                  </div>
+                  <hr style="border-color: rgba(255, 255, 255, 0.2)" />
+
+                  <!-- Languages -->
+                  <h6 class="fw-bold text-uppercase mb-3" style="color: #fff">
+                    <i class="bx bx-globe me-2"></i> Languages
+                  </h6>
+                  <p class="sidebar-text">{{ languagesList }}</p>
+                  <hr style="border-color: rgba(255, 255, 255, 0.2)" />
+
+                  <div class="text-start mt-3" *ngIf="additionalInfoList.length > 0">
+                    <h6 class="fw-bold text-uppercase text-white">Additional Information</h6>
+                    <ul class="sidebar-text list-unstyled">
+                      <li *ngFor="let item of additionalInfoList">
+                        <a [href]="item.url" target="_blank" rel="noopener noreferrer" *ngIf="item.url"
+                          class="text-white">
+                          {{ item.title || 'Document / Link' }}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-md-8 p-4">
+                  <!-- Summary -->
+                  <div class="mb-4">
+                    <h6 class="fw-bold text-uppercase mb-3" style="color: #022421; letter-spacing: 1px">
+                      <i class="bx bx-user me-2"></i> Profile
+                    </h6>
+                    <p style="
+                        line-height: 1.6;
+                        font-size: 15px;
+                        color: #444;
+                        word-wrap: break-word;
+                        overflow-wrap: anywhere;
+                      ">
+                      {{
+                      cvForm.value.summary ||
+                      "Write a short professional summary about yourself..."
+                      }}
+                    </p>
+                  </div>
+                  <hr />
+
+                  <!-- Education -->
+                  <div *ngIf="educationControls.length > 0" class="mb-4">
+                    <h6 class="fw-bold text-uppercase mb-3" style="color: #022421; letter-spacing: 1px">
+                      <i class="bx bx-book me-2"></i> Education
+                    </h6>
+                    <div *ngFor="let edu of educationControls" class="mb-3">
+                      <p class="fw-bold mb-1 text-dark">
+                        {{ edu.value.degree }}
+                      </p>
+                      <p class="text-muted mb-1">{{ edu.value.institute }}</p>
+                      <small class="text-secondary">
+                        {{ edu.value.from }}
+                        <ng-container *ngIf="edu.value.from && edu.value.to">
+                          -
+                        </ng-container>
+                        {{ edu.value.to }}
+                      </small>
+                    </div>
+                  </div>
+                  <hr />
+
+                  <!-- Work Experience -->
+                  <div *ngIf="experienceControls.length > 0" class="mb-4">
+                    <h6 class="fw-bold text-uppercase mb-3" style="color: #022421; letter-spacing: 1px">
+                      <i class="bx bx-briefcase me-2"></i> Work Experience
+                    </h6>
+                    <div *ngFor="let exp of experienceControls" class="mb-3">
+                      <p class="fw-bold mb-1 text-dark">{{ exp.value.role }}</p>
+                      <p class="text-muted mb-1">{{ exp.value.company }}</p>
+                      <small class="text-secondary d-block mb-2">
+                        {{ exp.value.from }}
+                        <ng-container *ngIf="exp.value.from && exp.value.to">
+                          -
+                        </ng-container>
+                        {{ exp.value.to }}
+                      </small>
+                      <p class="mb-0 text-muted" style="
+                          white-space: pre-line;
+                          line-height: 1.6;
+                          font-size: 14px;
+                          word-wrap: break-word;
+                          overflow-wrap: anywhere;
+                        ">
+                        {{ exp.value.details }}
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
+
+                  <div>
+                    <!-- Summary -->
+                    <div class="mb-4">
+                      <h6 class="fw-bold text-uppercase mb-3" style="color: #022421; letter-spacing: 1px">
+                        <i class="bx bx-user me-2"></i> Profile
+                      </h6>
+                      <p style="
+                          line-height: 1.6;
+                          font-size: 15px;
+                          color: #444;
+                          word-wrap: break-word;
+                          overflow-wrap: anywhere;
+                        ">
+                        {{
+                        cvForm.value.summary ||
+                        "Write a short professional summary about yourself..."
+                        }}
+                      </p>
+                    </div>
+                    <hr />
+
+                    <!-- Education -->
+                    <div *ngIf="educationControls.length > 0" class="mb-4">
+                      <h6 class="fw-bold text-uppercase mb-3" style="color: #022421; letter-spacing: 1px">
+                        <i class="bx bx-book me-2"></i> Education
+                      </h6>
+                      <div *ngFor="let edu of educationControls" class="mb-3">
+                        <p class="fw-bold mb-1 text-dark">
+                          {{ edu.value.degree }}
+                        </p>
+                        <p class="text-muted mb-1">{{ edu.value.institute }}</p>
+                        <small class="text-secondary">
+                          {{ edu.value.from }}
+                          <ng-container *ngIf="edu.value.from && edu.value.to">-</ng-container>
+                          {{ edu.value.to }}
+                        </small>
+                      </div>
+                    </div>
+                    <hr />
+
+                    <!-- Work Experience -->
+                    <div *ngIf="experienceControls.length > 0" class="mb-4">
+                      <h6 class="fw-bold text-uppercase mb-3" style="color: #022421; letter-spacing: 1px">
+                        <i class="bx bx-briefcase me-2"></i> Work Experience
+                      </h6>
+                      <div *ngFor="let exp of experienceControls" class="mb-3">
+                        <p class="fw-bold mb-1 text-dark">
+                          {{ exp.value.role }}
+                        </p>
+                        <p class="text-muted mb-1">{{ exp.value.company }}</p>
+                        <small class="text-secondary d-block mb-2">
+                          {{ exp.value.from }}
+                          <ng-container *ngIf="exp.value.from && exp.value.to">-</ng-container>
+                          {{ exp.value.to }}
+                        </small>
+                        <p class="mb-0 text-muted" style="
+                            white-space: pre-line;
+                            line-height: 1.6;
+                            font-size: 14px;
+                            word-wrap: break-word;
+                            overflow-wrap: anywhere;
+                          ">
+                          {{ exp.value.details }}
+                        </p>
+                      </div>
+                    </div>
+                    <hr />
+
+                    <!-- References -->
+                    <div class="mb-4">
+                      <h6 class="fw-bold text-uppercase mb-3" style="color: #022421; letter-spacing: 1px">
+                        <i class="bx bx-user-check me-2"></i> References
+                      </h6>
+                      <ul class="ps-3" *ngIf="referencesArray.length > 0">
+                        <li *ngFor="let reference of referencesArray">
+                          {{ reference }}
+                        </li>
+                      </ul>
+                    </div>
+                    <hr />
+
+                    <!-- Hobbies -->
+                    <div class="mb-4">
+                      <h6 class="fw-bold text-uppercase mb-3" style="color: #022421; letter-spacing: 1px">
+                        <i class="bx bx-happy me-2"></i> Hobbies
+                      </h6>
+                      <div class="d-flex flex-wrap gap-2" *ngIf="hobbiesArray.length > 0">
+                        <span class="badge bg-secondary" *ngFor="let hobby of hobbiesArray">
+                          {{ hobby }}
+                        </span>
+                      </div>
+                    </div>
+                    <hr />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="selectedTemplate === 3">
+            <div class="cv-3-container">
+              <!-- Header -->
+              <div class="cv-3-header">
+                <div class="cv-3-profile">
+                  <img [src]="cvForm.value.picture || 'assets/default-profile.png'" alt="Profile" class="profile-pic" />
+                  <div>
+                    <h2 class="fw-bold">{{ fullName }}</h2>
+                    <h5 class="job-title">
+                      {{ cvForm.value.jobTitle || "Job Title" }}
+                    </h5>
+                  </div>
+                </div>
+                <div class="cv-3-contact">
+                  <p><i class="bx bx-envelope"></i> {{ cvForm.value.email }}</p>
+                  <p><i class="bx bx-phone"></i> {{ cvForm.value.phone }}</p>
+                  <p><i class="bx bx-map"></i> {{ fullAddress }}</p>
+                </div>
+              </div>
+
+              <!-- Content Area -->
+              <div class="cv-3-body">
+                <!-- Left Column -->
+                <div class="cv-3-left">
+                  <!-- About -->
+                  <div class="cv-3-section">
+                    <h6><i class="bx bx-user"></i> About Me</h6>
+                    <p class="word-break">
+                      {{
+                      cvForm.value.summary ||
+                      "Write a short professional summary about yourself..."
+                      }}
+                    </p>
+                  </div>
+
+                  <!-- Skills -->
+                  <div class="cv-3-section" *ngIf="skillsArray.length > 0">
+                    <h6><i class="bx bx-star"></i> Skills</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                      <span class="badge bg-secondary" *ngFor="let skill of skillsArray">
+                        <i class="bx bx-check-circle"></i> {{ skill }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Languages -->
+                  <div class="cv-3-section">
+                    <h6><i class="bx bx-globe"></i> Languages</h6>
+                    <p class="sidebar-text">{{ languagesList }}</p>
+                  </div>
+
+
+                  <div class="cv-3-section text-start mt-3" *ngIf="additionalInfoList.length > 0">
+                    <h6>Additional Information</h6>
+                    <ul class="sidebar-text list-unstyled">
+                      <li *ngFor="let item of additionalInfoList">
+                        <a [href]="item.url" target="_blank" rel="noopener noreferrer" *ngIf="item.url">
+                          {{ item.title || 'Document / Link' }}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="cv-3-right">
+                  <!-- Education -->
+                  <div class="cv-3-section" *ngIf="educationControls.length > 0">
+                    <h6><i class="bx bx-book"></i> Education</h6>
+                    <div *ngFor="let edu of educationControls" class="mb-3">
+                      <p class="mb-1">
+                        <strong *ngIf="edu.value.degree">{{
+                          edu.value.degree
+                          }}</strong>
+                        <span *ngIf="edu.value.degree && edu.value.institute">
+                          -
+                        </span>
+                        <span *ngIf="edu.value.institute">{{
+                          edu.value.institute
+                          }}</span>
+                      </p>
+                      <small *ngIf="edu.value.from || edu.value.to">
+                        {{ edu.value.from || "" }}
+                        <span *ngIf="edu.value.from && edu.value.to"> - </span>
+                        {{ edu.value.to || "" }}
+                      </small>
+                    </div>
+                  </div>
+
+                  <!-- Work Experience -->
+                  <div class="cv-3-section" *ngIf="experienceControls.length > 0">
+                    <h6><i class="bx bx-briefcase"></i> Work Experience</h6>
+                    <div *ngFor="let exp of experienceControls" class="mb-3">
+                      <p class="mb-1">
+                        <strong *ngIf="exp.value.role">{{
+                          exp.value.role
+                          }}</strong>
+                        <span *ngIf="exp.value.role && exp.value.company">
+                          at
+                        </span>
+                        <span *ngIf="exp.value.company">{{
+                          exp.value.company
+                          }}</span>
+                      </p>
+                      <small class="d-block mb-1" *ngIf="exp.value.from || exp.value.to">
+                        {{ exp.value.from || "" }}
+                        <span *ngIf="exp.value.from && exp.value.to"> - </span>
+                        {{ exp.value.to || "" }}
+                      </small>
+                      <p class="mb-0" *ngIf="exp.value.details">
+                        {{ exp.value.details }}
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- References -->
+                  <div class="cv-3-section">
+                    <h6><i class="bx bx-user-check"></i> References</h6>
+                    <ul class="ps-3" *ngIf="referencesArray.length > 0">
+                      <li *ngFor="let reference of referencesArray">
+                        {{ reference }}
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Hobbies -->
+                  <div class="cv-3-section">
+                    <h6><i class="bx bx-happy"></i> Hobbies</h6>
+                    <div class="d-flex flex-wrap gap-2" *ngIf="hobbiesArray.length > 0">
+                      <span class="badge bg-secondary" *ngFor="let hobby of hobbiesArray">
+                        {{ hobby }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Template Modal -->
+<app-cv-templates [showTemplates]="showTemplates" [selectedTemplate]="selectedTemplate" (close)="showTemplates = false"
+  (templateSelected)="applyTemplate($event)">
+</app-cv-templates>

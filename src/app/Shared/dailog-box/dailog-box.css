@@ -1,0 +1,33 @@
+.custom-modal-backdrop {
+  display: none;
+}
+
+.modal.fade.show.d-block {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 1060;
+}
+
+.modal-content {
+  border-radius: 12px;
+  border: none;
+  background: #fff;
+  padding: 20px 25px;
+  max-width: 1200px;
+  width: 100%;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+  animation: popup 0.25s ease-out;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

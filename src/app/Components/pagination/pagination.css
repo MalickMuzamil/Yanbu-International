@@ -1,0 +1,17 @@
+.page-link {
+  color: black;
+}
+
+.btn-primary {
+  color: white !important;
+}
+
+.page-link:hover {
+  background-color: #0d6efd !important;
+}
+
+.pagination,
+.pagination .page-item,
+.pagination .page-link {
+  position: static !important; 
+}

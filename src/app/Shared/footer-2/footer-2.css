@@ -1,0 +1,14 @@
+.custom-bg-footer-2 {
+  background-color: #0A174E;
+}
+
+@media (min-width: 768px) {
+  .follow-us-heading {
+    position: relative;
+    right: 12px;
+  }
+}
+
+.footer-heading{
+  color: white !important;
+}

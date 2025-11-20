@@ -1,0 +1,96 @@
+<div class="modal fade" id="signUpModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Apply for {{ jobTitle }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form [formGroup]="applicationForm" (ngSubmit)="submitApplication()">
+        <div class="modal-body">
+          <p>Please fill in your details to apply.</p>
+
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="Full Name"
+            formControlName="fullName"
+          />
+          <div
+            class="text-danger small"
+            *ngIf="
+              applicationForm.get('fullName')?.touched &&
+              applicationForm.get('fullName')?.invalid
+            "
+          >
+            Full name is required
+          </div>
+
+          <input
+            type="email"
+            class="form-control mb-2"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <div
+            class="text-danger small"
+            *ngIf="
+              applicationForm.get('email')?.touched &&
+              applicationForm.get('email')?.invalid
+            "
+          >
+            Valid email is required
+          </div>
+
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="Phone"
+            formControlName="phone"
+          />
+          <div
+            class="text-danger small"
+            *ngIf="
+              applicationForm.get('phone')?.touched &&
+              applicationForm.get('phone')?.invalid
+            "
+          >
+            Phone number is required
+          </div>
+
+          <input
+            type="file"
+            class="form-control mb-2"
+            (change)="onResumeSelected($event)"
+          />
+          <small *ngIf="isUploading" class="text-info">
+            Uploading resume...
+          </small>
+
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="Training Video URL (optional)"
+            formControlName="trainingVideo"
+          />
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="
+              isUploading || isSubmitting || applicationForm.invalid
+            "
+          >
+            <span *ngIf="isSubmitting">Submitting...</span>
+            <span *ngIf="!isSubmitting">Submit Application</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

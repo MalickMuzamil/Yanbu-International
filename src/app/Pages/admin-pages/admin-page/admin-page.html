@@ -1,0 +1,159 @@
+<div class="d-md-none p-3">
+  <button
+    class="btn btn-outline-dark bg-white"
+    type="bchterm: stringutton"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#sidebarOffcanvas"
+  >
+    <i class="bx bx-menu fs-4 text-dark"></i>
+  </button>
+</div>
+
+<div class="d-flex" style="height: 100vh; overflow: hidden">
+  <app-sidebar
+    style="position: sticky; top: 0; height: 100vh; flex-shrink: 0"
+  ></app-sidebar>
+
+  <div class="flex-grow-1 p-4 d-flex flex-column w-100 page">
+    <h2 class="mb-4 title fw-bold">Candidates</h2>
+
+    <div>
+      <div class="mb-4 filter-bar">
+        <div class="row g-3 align-items-start">
+          <div class="col-12 col-md-6">
+            <div class="input-group search-box mb-2">
+              <span class="input-group-text bg-white">
+                <i class="bx bx-search"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control search-input"
+                placeholder="Search...."
+                (input)="onSearchChange($event.target.value)"
+              />
+            </div>
+            <button
+              class="btn btn-success btn-export-width"
+              (click)="exportData()"
+            >
+              <i class="bx bx-download"></i> Export
+            </button>
+          </div>
+
+          <div class="col-12 col-md-auto ms-lg-auto">
+            <label class="form-label fw-semibold">Application Type</label>
+            <select
+              class="form-select w-auto"
+              [ngModel]="applicationType"
+              (ngModelChange)="onApplicationTypeChange($event)"
+            >
+              <option value="">-- Select Application Type --</option>
+              <option value="EASY_APPLY">Easy Apply</option>
+              <option value="REGISTERED">Registered</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive" *ngIf="applicationType === 'REGISTERED'">
+      <table class="table table-bordered table-striped align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Candidate ID</th>
+            <th>Candidate Name</th>
+            <th>Email</th>
+            <th>Job Title</th>
+            <th>Status</th>
+            <th>Applied At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reg of filteredRegistrations; let i = index">
+            <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+
+            <td>{{ reg.candidateId }}</td>
+            <td>{{ reg.candidateName }}</td>
+            <td>{{ reg.email || "-" }}</td>
+            <td>{{ reg.jobTitle || "-" }}</td>
+
+            <td>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-warning': reg.status === 'IN_PROGRESS',
+                  'bg-success': reg.status === 'APPROVED',
+                  'bg-danger': reg.status === 'REJECTED'
+                }"
+              >
+                {{ reg.status }}
+              </span>
+            </td>
+
+            <td>{{ reg.appliedAt | date : "medium" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-responsive" *ngIf="applicationType === 'EASY_APPLY'">
+      <table class="table table-bordered table-striped align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Candidate ID</th>
+            <th>Candidate Name</th>
+            <th>Job</th>
+            <th>Applied Date</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Resume</th>
+            <th>Training Video</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reg of filteredRegistrations; let i = index">
+            <td>{{ reg.candidateId || "N/A" }}</td>
+            <td>{{ reg.candidateName }}</td>
+            <td>{{ reg.jobTitle || "N/A" }}</td>
+            <td>{{ reg.appliedAt | date : "short" }}</td>
+            <td>{{ reg.email || "N/A" }}</td>
+            <td>{{ reg.status || "N/A" }}</td>
+            <td>
+              <a *ngIf="reg.resume" [href]="reg.resume" target="_blank"
+                >Download</a
+              >
+              <span *ngIf="!reg.resume">-</span>
+            </td>
+            <td>
+              <a
+                *ngIf="reg.trainingVideo"
+                [href]="reg.trainingVideo"
+                target="_blank"
+                >Watch</a
+              >
+              <span *ngIf="!reg.trainingVideo">-</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-3 d-flex justify-content-end">
+      <app-pagination
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChange)="onPageChange($event)"
+      ></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-dailog-box
+  [visible]="showConfirmDialog"
+  [title]="'Confirm Registration'"
+  [message]="'Are you sure you want to confirm registration for ' + '?'"
+  [confirmText]="'Confirm'"
+  [cancelText]="'Cancel'"
+>
+</app-dailog-box>

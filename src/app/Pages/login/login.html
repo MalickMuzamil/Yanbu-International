@@ -1,0 +1,52 @@
+<div class="login-container">
+  <div class="login-box">
+    <div class="login-header text-center py-4">
+      <img src="assets/Logo.png" alt="Ynabu International Logo" class="login-logo">
+      <h4 class="fw-bold main-title">Welcome to Yanbu International</h4>
+      <p class="text-muted">Log in to continue</p>
+    </div>
+
+    <div class="login-form-container">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="input-group mb-4">
+          <span class="input-group-text">
+            <i class='bx bx-envelope'></i>
+          </span>
+          <input type="email" formControlName="email" class="form-control" placeholder="Email Address" />
+        </div>
+        <div class="text-danger validation-message" *ngIf="f['email'].touched && f['email'].invalid">
+          <span *ngIf="f['email'].errors?.['required']">Email is required</span>
+          <span *ngIf="f['email'].errors?.['email']">Please enter a valid email</span>
+        </div>
+
+        <div class="input-group mb-4">
+          <span class="input-group-text">
+            <i class='bx bx-lock-alt'></i>
+          </span>
+          <input type="password" formControlName="password" class="form-control" placeholder="Password" />
+        </div>
+        <div class="text-danger validation-message" *ngIf="f['password'].touched && f['password'].invalid">
+          Password must be at least 6 characters
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" formControlName="remember_me" id="remember_me" />
+            <label class="form-check-label" for="remember_me">Remember Me</label>
+          </div>
+          <a href="#" class="forgot-password">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 login-btn">Log In</button>
+
+        <p class="mt-4 text-center text-muted">
+          Don't have an account?
+          <a routerLink="/signup" class="register-link">Register Here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+  <footer class="login-footer text-center">
+    <p class="mb-0">© 2025 <strong>Yanbu International</strong> All Rights Reserved</p>
+  </footer>
+</div>

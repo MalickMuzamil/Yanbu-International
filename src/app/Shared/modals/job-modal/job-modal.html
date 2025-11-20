@@ -1,0 +1,317 @@
+<div
+  class="modal fade"
+  id="jobModal"
+  tabindex="-1"
+  aria-labelledby="jobModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title" id="jobModalLabel">
+          {{ jobData ? "Update Job" : "Create Job" }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="jobForm" (ngSubmit)="submitForm()" class="job-form">
+          <div class="row g-3">
+            <!-- Row 1 -->
+            <div class="col-md-6">
+              <label class="form-label">Job Title *</label>
+              <input
+                type="text"
+                formControlName="jobTitle"
+                class="form-control"
+                placeholder="Enter Job Title e.g. Software Engineer"
+              />
+              <span
+                *ngIf="f['jobTitle'].touched && f['jobTitle'].invalid"
+                class="text-danger small"
+              >
+                Job Title is required
+              </span>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Company Name *</label>
+              <select
+                formControlName="companyId"
+                class="form-select custom-select"
+                placeholder="Enter Company Name e.g. Google"
+              >
+                <option value="" selected>Select Company</option>
+                <option
+                  *ngFor="let company of filteredCompanies"
+                  [value]="company.companyId"
+                >
+                  {{ company.companyName }}
+                </option>
+              </select>
+              <span
+                *ngIf="f['companyId'].touched && f['companyId'].invalid"
+                class="text-danger small"
+              >
+                Company is required
+              </span>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="col-md-6">
+              <label class="form-label">Location *</label>
+              <input
+                type="text"
+                formControlName="jobLocation"
+                class="form-control"
+                placeholder="Enter location e.g. New York"
+              />
+              <span
+                *ngIf="f['jobLocation'].touched && f['jobLocation'].invalid"
+                class="text-danger small"
+              >
+                Location is required
+              </span>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Salary *</label>
+              <div class="input-group">
+                <!-- Salary input (text so range allowed) -->
+                <input
+                  type="text"
+                  formControlName="jobSalary"
+                  class="form-control"
+                  placeholder="Enter salary e.g. 23000-34000"
+                />
+
+                <!-- Currency dropdown -->
+                <select
+                  formControlName="jobCurrency"
+                  class="form-select"
+                  style="max-width: 100px"
+                  aria-label="Select currency"
+                >
+                  <option value="" disabled>Select</option>
+                  <option *ngFor="let c of currencies" [value]="c.symbol">
+                    {{ c.symbol }}
+                  </option>
+                </select>
+              </div>
+
+              <span
+                *ngIf="f['jobSalary'].touched && f['jobSalary'].invalid"
+                class="text-danger small"
+              >
+                Salary is required
+              </span>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Job Type *</label>
+              <select
+                formControlName="jobType"
+                class="form-select custom-select"
+              >
+                <option value="">Select Type</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Part-Time">Part-Time</option>
+                <option value="Contract">Contract</option>
+                <option value="Internship">Internship</option>
+              </select>
+              <span
+                *ngIf="f['jobType'].touched && f['jobType'].invalid"
+                class="text-danger small"
+              >
+                Job Type is required
+              </span>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Experience *</label>
+              <input
+                type="text"
+                formControlName="experience"
+                class="form-control"
+                placeholder="e.g. 2-4 years"
+              />
+              <span
+                *ngIf="f['experience'].touched && f['experience'].invalid"
+                class="text-danger small"
+              >
+                Experience is required
+              </span>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Gender *</label>
+              <select
+                formControlName="gender"
+                class="form-select custom-select"
+              >
+                <option value="">Select Gender</option>
+                <option value="Any">Any</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <span
+                *ngIf="f['gender'].touched && f['gender'].invalid"
+                class="text-danger small"
+              >
+                Gender is required
+              </span>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Vacancy *</label>
+              <input
+                type="number"
+                formControlName="vacancy"
+                class="form-control"
+                placeholder="Enter Job Vacancy e.g. 5"
+                min="1"
+              />
+              <span
+                *ngIf="f['vacancy'].touched && f['vacancy'].invalid"
+                class="text-danger small"
+              >
+                Vacancy is required
+              </span>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Job Posted Date *</label>
+              <input
+                type="date"
+                formControlName="jobPostedDate"
+                class="form-control"
+              />
+              <span
+                *ngIf="f['jobPostedDate'].touched && f['jobPostedDate'].invalid"
+                class="text-danger small"
+              >
+                Job Posted Date is required
+              </span>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Education</label>
+              <input
+                type="text"
+                formControlName="education"
+                class="form-control"
+                placeholder="Enter required education e.g. B.Sc, M.Sc"
+              />
+              <span
+                *ngIf="f['education'].touched && f['education'].invalid"
+                class="text-danger small"
+              >
+                Education is required
+              </span>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Nationality</label>
+              <input
+                type="text"
+                formControlName="nationality"
+                class="form-control"
+                placeholder="Enter nationality e.g. Pakistan"
+              />
+              <span
+                *ngIf="f['nationality'].touched && f['nationality'].invalid"
+                class="text-danger small"
+              >
+                Nationality is required
+              </span>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Roles & Responsibilities *</label>
+              <textarea
+                formControlName="rolesAndResponsibility"
+                class="form-control"
+                rows="3"
+              ></textarea>
+              <span
+                *ngIf="
+                  f['rolesAndResponsibility'].touched &&
+                  f['rolesAndResponsibility'].invalid
+                "
+                class="text-danger small"
+              >
+                Roles and Responsibilities are required
+              </span>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="col-12">
+              <label class="form-label">Job Description *</label>
+              <textarea
+                formControlName="jobDescription"
+                class="form-control"
+                rows="4"
+              ></textarea>
+              <span
+                *ngIf="
+                  f['jobDescription'].touched && f['jobDescription'].invalid
+                "
+                class="text-danger small"
+              >
+                Description is required
+              </span>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Required Skills</label>
+              <input
+                type="text"
+                formControlName="jobSkills"
+                class="form-control"
+                placeholder="Comma separated skills"
+              />
+            </div>
+          </div>
+
+          <div class="col-12">
+            <hr />
+            <div
+              class="form-check form-switch mb-3 d-flex justify-content-end align-items-center"
+            >
+              <input
+                class="form-check-input me-2"
+                type="checkbox"
+                id="hideCompanySwitch"
+                formControlName="hideCompanyInfo"
+              />
+              <label
+                class="form-check-label text-danger mb-0"
+                for="hideCompanySwitch"
+              >
+                Hide Company Info
+              </label>
+            </div>
+          </div>
+
+          <div class="modal-footer mt-4">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">
+              {{ jobData ? "Update Job" : "Create Job" }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

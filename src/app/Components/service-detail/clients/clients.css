@@ -1,0 +1,246 @@
+.client-card {
+  background-color: rgb(229, 227, 227);
+  border: 1px solid #dee2e6;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.client-card .flag-icon {
+  position: absolute;     
+  right: 8px;
+  width: 40px;    
+  height: auto;
+  border-radius: 3px; 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+
+.client-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.client-heading {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.custom-bg {
+  background-color: #0a174e;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 2.5vw, 2.5rem);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-img-container {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(6rem, 15%, 9rem);
+  margin: 0 auto;
+}
+
+.testimonial-img-container::before {
+  content: "";
+  position: absolute;
+  top: 59%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding-top: 100%;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.testimonial-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.testimonial-text {
+  flex: 1 1 auto;
+  color: white;
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.testimonial-name {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.testimonial-position {
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: #dcdcdc;
+}
+
+@media (max-width: 1024px) {
+  .testimonial-card {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 767px) {
+  .testimonial-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .testimonial-text {
+    margin-top: 1rem;
+  }
+  .testimonial-img-container::before {
+    width: 106%;
+    padding-top: 105%;
+  }
+}
+
+#testimonialCarousel .carousel-inner {
+  display: flex;
+  align-items: center;
+}
+
+#testimonialCarousel .carousel-control-prev,
+#testimonialCarousel .carousel-control-next {
+  top: 60%;
+  transform: translateY(-50%);
+  bottom: auto;
+  width: 5%; 
+}
+
+#testimonialCarousel .carousel-control-prev-icon,
+#testimonialCarousel .carousel-control-next-icon {
+  border-radius: 50%;
+  padding: 10px;
+  background-size: 70% 70%;
+}
+
+
+.steps-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin: 2rem auto;
+}
+
+.steps-line::before {
+  content: "";
+  position: absolute;
+  top: 1.5rem; 
+  left: 15%; /* line circle ke andar se start */
+  right: 16%;
+  height: 3px;
+  background-color: #0a174e;
+  z-index: 0;
+}
+
+.step-wrapper {
+  text-align: center;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.step-circle {
+  width: clamp(2rem, 6vw, 3rem);   /* responsive circle */
+  height: clamp(2rem, 6vw, 3rem);
+  border-radius: 50%;
+  background-color: #0a174e;
+  color: white;
+  font-weight: bold;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.step-label {
+  margin-top: clamp(0.3rem, 1vw, 0.8rem);
+  font-weight: 600;
+  font-size: clamp(0.5rem, 2vw, 0.6rem);
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .steps-line {
+    margin: 2rem auto;
+    padding: 0;
+    gap: 0.5rem;
+  }
+
+  .steps-line::before {
+    top: 1.2rem; 
+    left: 10%;
+    right: 10%;
+  }
+}
+
+
+/* Section title */
+.how-we-work-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.work-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.red-circle {
+  flex-shrink: 0;  
+  width: 2.2rem;
+  height: 2.2rem;
+  min-width: 2.2rem;  
+  min-height: 2.2rem;
+  border-radius: 50%;
+  background-color: #c8102e;
+  color: white;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.8rem;
+}
+
+.work-step p {
+  margin: 0;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  line-height: 1.4;
+}
+
+.work-step strong {
+  font-weight: 700;
+  font-size: clamp(0.9rem, 1.7vw, 1.1rem);
+}
+
+.work-step span {
+  font-weight: 400;
+  font-size: clamp(0.7rem, 1.2vw, 0.95rem);
+  margin-left: 0.3rem;
+}
+

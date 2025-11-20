@@ -1,0 +1,187 @@
+<div class="row g-4 pb-4 pb-md-0">
+  <h2 class="fw-bold mb-3 text-center work-heading title">OUR PACKAGES</h2>
+  <div class="col-md-6 d-flex">
+    <div class="work-card p-4 w-100">
+      <h6 class="fw-bold mb-3 title">STANDARD</h6>
+      <ul class="list-unstyled mb-0">
+        <li>✔ Basic</li>
+        <li>✔ Candidate</li>
+        <li>✔ Searching</li>
+        <li>✔ Priority</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6 d-flex">
+    <div class="work-card p-4 w-100">
+      <h6 class="fw-bold mb-3 title">PROFESSIONAL</h6>
+      <ul class="list-unstyled mb-0">
+        <li>✔ Advanced search</li>
+        <li>✔ Priority support</li>
+        <li>✔ Priority supercentre</li>
+        <li>✔ Ideal for growing companies</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container py-5 px-sm-0" id="talentForm">
+  <h4 class="fw-bold mb-4 form-title title w-md-50">
+    SUBMIT TALENT REQUIREMENTS
+  </h4>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Company Name -->
+    <div class="row mb-3">
+      <label class="col-md-4 col-form-label form-label">Company Name</label>
+      <div class="col-md-8">
+        <input
+          type="text"
+          class="form-control form-input"
+          placeholder="Enter company name"
+          formControlName="companyName"
+        />
+        <div class="text-danger" *ngIf="isInvalid('companyName')">
+          Company name is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Name -->
+    <div class="row mb-3">
+      <label class="col-md-4 col-form-label form-label">Contact Name</label>
+      <div class="col-md-8">
+        <input
+          type="text"
+          class="form-control form-input"
+          placeholder="Enter contact name"
+          formControlName="contactName"
+        />
+        <div class="text-danger" *ngIf="isInvalid('contactName')">
+          Contact name is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="row mb-3">
+      <label class="col-md-4 col-form-label form-label">Email</label>
+      <div class="col-md-8">
+        <input
+          type="email"
+          class="form-control form-input"
+          placeholder="Enter email"
+          formControlName="email"
+        />
+        <div class="text-danger" *ngIf="isInvalid('email')">
+          Enter a valid email
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone -->
+    <div class="row mb-3">
+      <label class="col-md-4 col-form-label form-label">Phone</label>
+      <div class="col-md-8">
+        <input
+          type="text"
+          class="form-control form-input"
+          placeholder="Enter phone number"
+          formControlName="phone"
+        />
+        <div class="text-danger" *ngIf="isInvalid('phone')">
+          Enter a valid phone number
+        </div>
+      </div>
+    </div>
+
+    <!-- Role Title -->
+    <div class="row mb-3">
+      <label class="col-md-4 col-form-label form-label">Role Title</label>
+      <div class="col-md-8">
+        <input
+          type="text"
+          class="form-control form-input"
+          placeholder="Job title"
+          formControlName="roleTitle"
+        />
+        <div class="text-danger" *ngIf="isInvalid('roleTitle')">
+          Role title is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="row mb-3">
+      <label class="col-md-4 col-form-label form-label">Headcount</label>
+      <div class="col-md-8">
+        <select class="form-select form-input" formControlName="location">
+          <option value="" disabled>Select location</option>
+          <option>Dubai</option>
+          <option>Abu Dhabi</option>
+          <option>Qatar</option>
+        </select>
+        <div class="text-danger" *ngIf="isInvalid('location')">
+          Location is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Salary -->
+    <div class="row mb-3">
+      <label class="col-md-4 col-form-label form-label"
+        >Job Requirement Type</label
+      >
+      <div class="col-md-8">
+        <select class="form-select form-input" formControlName="salaryRange">
+          <option value="" disabled>Select salary range</option>
+          <option>2k - 5k</option>
+          <option>5k - 10k</option>
+          <option>10k+</option>
+        </select>
+        <div class="text-danger" *ngIf="isInvalid('salaryRange')">
+          Salary range is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Job Description -->
+    <div class="row mb-3">
+      <label class="col-md-4 col-form-label form-label">Job Description</label>
+      <div class="col-md-8">
+        <textarea
+          class="form-control form-input"
+          formControlName="jobDescription"
+          placeholder="Enter job description"
+        ></textarea>
+        <div class="text-danger" *ngIf="isInvalid('jobDescription')">
+          Job description file is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Urgency -->
+    <div class="row mb-3">
+      <label class="col-md-4 col-form-label form-label">Urgency</label>
+      <div class="col-md-8">
+        <select class="form-select form-input" formControlName="urgency">
+          <option value="" disabled>Select urgency</option>
+          <option>Immediate</option>
+          <option>Within 1 Month</option>
+          <option>Flexible</option>
+        </select>
+        <div class="text-danger" *ngIf="isInvalid('urgency')">
+          Urgency is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <button type="submit" class="btn btn-danger btn-lg w-100 submit-btn">
+          SUBMIT
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
